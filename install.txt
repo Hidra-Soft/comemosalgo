@@ -1,0 +1,12 @@
+-controlador MySql
+instale xampp para tener phpmyadmin
+luego cree la base de datos comemosalgo
+luego
+pip install cymysql
+pip install django-cymysql
+
+para verificar que este todo correcto
+python manage.py check
+
+migrar
+python manage.py migrate
