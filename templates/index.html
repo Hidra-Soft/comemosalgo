@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block extrastatic %}
+	{% endblock %}
+
+
+	<title>{% block title %}Document {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/materialize.css' %}">
+</head>
+<body>
+
+<a class="waves-effect waves-light btn">button</a>
+<a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
+<a class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>button</a>
+
+
+
+<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'js/materialize.js' %}"></script>
+</body>
+
+</html>
