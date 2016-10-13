@@ -1,3 +1,7 @@
 from django.contrib import admin
+from apps.comercio.models import Comercio, Domicilio, Pago, Telefono
 
-# Register your models here.
+admin.site.register(Comercio)
+admin.site.register(Domicilio)
+admin.site.register(Pago)
+admin.site.register(Telefono)

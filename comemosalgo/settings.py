@@ -76,12 +76,12 @@ WSGI_APPLICATION = 'comemosalgo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql_cymysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'comemosalgo',
-        'USER': 'root',
-        'PASSWORD': '',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'PORT': '5432',
         'HOST': 'localhost',
-        'PORT': '3306'
     }
 }
 
