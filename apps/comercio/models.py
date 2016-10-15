@@ -30,6 +30,9 @@ class Domicilio(models.Model):
     def __str__(self):
         return 'calle: {} -nro calle: {}'.format(self.calle, self.nro_calle)
 
+class Imagen_Comercio(models.Model):
+    pass
+
 
 class Comercio(models.Model):
     cod_comercio = models.AutoField(primary_key= True)
@@ -38,7 +41,7 @@ class Comercio(models.Model):
     rubro = models.CharField(max_length=20)
     horarios = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=150)
-
+    disponibilidad = models.BooleanField()
     domicilio = models.OneToOneField(Domicilio, on_delete= models.CASCADE)
 
     def __str__(self):
@@ -47,8 +50,9 @@ class Comercio(models.Model):
 class Telefono(models.Model):
     nro_tel = models.CharField(primary_key= True, max_length=25)
     descripcion = models.CharField(max_length=30)
+    disponibilidad_tel = models.BooleanField()
 
-    comecio = models.ForeignKey(Comercio, on_delete=models.CASCADE)
+    comercio = models.ForeignKey(Comercio, on_delete=models.CASCADE)
 
     def __str__(self):
         return '{}'.format(self.nro_tel)
@@ -57,6 +61,7 @@ class Pago(models.Model):
     cod_pago = models.AutoField(primary_key=True)
     nombre_pago = models.CharField(max_length=20)
     descripcion = models.CharField(max_length=50)
+    disponibilidad_pago = models.BooleanField()
 
     comercio = models.ForeignKey(Comercio, on_delete=models.CASCADE)
 
