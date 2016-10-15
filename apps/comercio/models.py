@@ -1,5 +1,45 @@
 from django.db import models
 
+
+
+class Departamento(models.Model):
+    cod_depto = models.IntegerField(primary_key=True)
+    nom_depto = models.CharField(max_length=50)
+
+
+    def __str__(self):
+        return '{}'.format(self.nom_depto)
+
+class Localidad(models.Model):
+    cod_localidad = models.IntegerField(primary_key=True)
+    nom_localidad =models.CharField(max_length=50)
+
+    def __str__(self):
+        return '{}'.format(self.nom_localidad)
+
+    departamento = models.ForeignKey(Departamento)
+
+class Domicilio(models.Model):
+    cod_domicilio = models.AutoField(primary_key= True)
+    calle = models.CharField(max_length=50)
+    nro_calle = models.IntegerField()
+    coordenadas = models.CharField(max_length=30)
+
+    localidad = models.OneToOneField(Localidad)
+
+    def __str__(self):
+        return 'calle: {} -nro calle: {}'.format(self.calle, self.nro_calle)
+
+
+class Telefono(models.Model):
+    nro_tel = models.CharField(primary_key= True, max_length=25)
+    descripcion = models.CharField(max_length=30)
+
+
+    def __str__(self):
+        return '{}'.format(self.nro_tel)
+
+
 class Comercio(models.Model):
     cod_comercio = models.AutoField(primary_key= True)
     nombre_cadena = models.CharField(max_length=40)
@@ -8,28 +48,19 @@ class Comercio(models.Model):
     horarios = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=150)
 
+    domicilio = models.OneToOneField(Domicilio, on_delete= models.CASCADE)
+    telefono = models.OneToOneField(Telefono, blank=True, on_delete=models.CASCADE)
+
     def __str__(self):
         return '-CADENA: {} -COMERCIO: {}'.format(self.nombre_cadena, self.nombre_comercio)
 
 
-class Domicilio(models.Model):
-    cod_domicilio = models.AutoField(primary_key= True)
-    calle = models.CharField(max_length=50)
-    nro_calle = models.IntegerField()
-    cod_localidad = models.IntegerField()
-    coordenadas = models.CharField(max_length=30)
-    comercio = models.OneToOneField(Comercio, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return '{} -CALLE: {} -NRO CALLE: {}'.format(self.comercio,self.calle, self.nro_calle)
-
 class Pago(models.Model):
     cod_pago = models.AutoField(primary_key=True)
-    comercio = models.ForeignKey(Comercio,  on_delete=models.CASCADE)
+    nombre_pago = models.CharField(max_length=20)
     descripcion = models.CharField(max_length=50)
 
+    comercio = models.ForeignKey(Comercio, on_delete=models.CASCADE)
 
-class Telefono(models.Model):
-    nro_tel = models.CharField(primary_key= True, max_length=25)
-    descripcion = models.CharField(max_length=30)
-    comercio = models.ForeignKey(Comercio,  on_delete=models.CASCADE)
+    def __str__(self):
+        return '{}'.format(self.nombre_pago)
