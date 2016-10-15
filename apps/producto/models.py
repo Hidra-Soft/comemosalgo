@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Imagen_Bebida(models.Model):
-    bebida = models.ForeignKey(Bebida)
+    pass
 
 class Imagen_Comida(models.Model):
     pass
@@ -10,9 +10,15 @@ class Imagen_Comida(models.Model):
 class Linea(models.Model):
     descripcion_linea = models.CharField(max_length=15)
 
+    def __str__(self):
+        return '{}'.format(self.descripcion_linea)
+
 
 class Capacidad(models.Model):
     descripcion_capacidad = models.CharField(max_length=6)
+
+    def __str__(self):
+        return '{}'.format(self.descripcion_capacidad)
 
 
 class Bebida(models.Model):
@@ -24,10 +30,16 @@ class Bebida(models.Model):
     capacidad = models.ForeignKey(Capacidad, on_delete=models.CASCADE)
     linea = models.ForeignKey(Linea, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return '{}'.format(self.nombre_bebida)
+
 
 class Categoria(models.Model):
     cod_categoria = models.AutoField(primary_key=True)
-    descripcion = models.CharField(max_length=15)
+    descripcion_categoria = models.CharField(max_length=15)
+
+    def __str__(self):
+        return '{}'.format(self.descripcion_categoria)
 
 
 class Comida(models.Model):
@@ -38,3 +50,6 @@ class Comida(models.Model):
     disponibilidad_comida = models.BooleanField()
 
     categoria = models.ManyToManyField(Categoria)
+
+    def __str__(self):
+        return '{}'.format(self.nombre_comida)
