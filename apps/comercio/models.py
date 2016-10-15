@@ -31,15 +31,6 @@ class Domicilio(models.Model):
         return 'calle: {} -nro calle: {}'.format(self.calle, self.nro_calle)
 
 
-class Telefono(models.Model):
-    nro_tel = models.CharField(primary_key= True, max_length=25)
-    descripcion = models.CharField(max_length=30)
-
-
-    def __str__(self):
-        return '{}'.format(self.nro_tel)
-
-
 class Comercio(models.Model):
     cod_comercio = models.AutoField(primary_key= True)
     nombre_cadena = models.CharField(max_length=40)
@@ -49,11 +40,18 @@ class Comercio(models.Model):
     descripcion = models.CharField(max_length=150)
 
     domicilio = models.OneToOneField(Domicilio, on_delete= models.CASCADE)
-    telefono = models.OneToOneField(Telefono, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return '-CADENA: {} -COMERCIO: {}'.format(self.nombre_cadena, self.nombre_comercio)
 
+class Telefono(models.Model):
+    nro_tel = models.CharField(primary_key= True, max_length=25)
+    descripcion = models.CharField(max_length=30)
+
+    comecio = models.ForeignKey(Comercio, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{}'.format(self.nro_tel)
 
 class Pago(models.Model):
     cod_pago = models.AutoField(primary_key=True)
