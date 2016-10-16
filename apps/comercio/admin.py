@@ -18,8 +18,6 @@ class TelefonoAdmin():
 class DepartamentoAdmin():
     list_display = ()
 
-class LocalidadAdmin():
-    list_display = ()
 
 admin.site.register(Comercio, ComercioAdmin)
 admin.site.register(Domicilio, DomicilioAdmin)
