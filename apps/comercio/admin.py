@@ -9,17 +9,22 @@ class ComercioAdmin(admin.ModelAdmin):
 class DomicilioAdmin(admin.ModelAdmin):
     list_display = ('cod_domicilio','calle','nro_calle','coordenadas','localidad')
 
+
 class PagoAdmin(admin.ModelAdmin):
     list_display = ('cod_pago','nombre_pago','descripcion','disponibilidad_pago')
 
+
 class TelefonoAdmin(admin.ModelAdmin):
-    list_display = ('nro_tel','descipcion','disponibilidad_tel','comercio')
+    list_display = ('nro_tel','descripcion','disponibilidad_tel','comercio')
+
 
 class DepartamentoAdmin(admin.ModelAdmin):
-    list_display = ('cod_depto','nomb_depto')
+    list_display = ('cod_depto','nom_depto')
+
 
 class LocalidadAdmin(admin.ModelAdmin):
     list_display = ('cod_localidad','nom_localidad')
+
 
 admin.site.register(Comercio, ComercioAdmin)
 admin.site.register(Domicilio, DomicilioAdmin)
