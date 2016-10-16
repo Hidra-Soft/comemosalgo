@@ -17,7 +17,7 @@ class Localidad(models.Model):
     def __str__(self):
         return '{}'.format(self.nom_localidad)
 
-    departamento = models.ForeignKey(Departamento)
+    departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
 
 class Domicilio(models.Model):
     cod_domicilio = models.AutoField(primary_key= True)
@@ -28,10 +28,7 @@ class Domicilio(models.Model):
     localidad = models.OneToOneField(Localidad)
 
     def __str__(self):
-        return 'calle: {} -nro calle: {}'.format(self.calle, self.nro_calle)
-
-class Imagen_Comercio(models.Model):
-    pass
+        return 'calle {} nro {}'.format(self.cod_domicilio, self.nro_calle)
 
 
 class Comercio(models.Model):
@@ -40,16 +37,18 @@ class Comercio(models.Model):
     nombre_comercio = models.CharField(max_length=40)
     rubro = models.CharField(max_length=20)
     horarios = models.CharField(max_length=50)
-    descripcion = models.CharField(max_length=150)
+    descripcion = models.TextField(max_length=150)
     disponibilidad = models.BooleanField()
+
     domicilio = models.OneToOneField(Domicilio, on_delete= models.CASCADE)
+    img_comercio = models.ImageField(upload_to='img_comercios')
 
     def __str__(self):
-        return '-CADENA: {} -COMERCIO: {}'.format(self.nombre_cadena, self.nombre_comercio)
+        return 'comercio: {}'.format(self.nombre_comercio)
 
 class Telefono(models.Model):
     nro_tel = models.CharField(primary_key= True, max_length=25)
-    descripcion = models.CharField(max_length=30)
+    descripcion = models.TextField(max_length=30)
     disponibilidad_tel = models.BooleanField()
 
     comercio = models.ForeignKey(Comercio, on_delete=models.CASCADE)
@@ -60,10 +59,11 @@ class Telefono(models.Model):
 class Pago(models.Model):
     cod_pago = models.AutoField(primary_key=True)
     nombre_pago = models.CharField(max_length=20)
-    descripcion = models.CharField(max_length=50)
+    descripcion = models.TextField(max_length=50)
     disponibilidad_pago = models.BooleanField()
 
     comercio = models.ForeignKey(Comercio, on_delete=models.CASCADE)
 
     def __str__(self):
         return '{}'.format(self.nombre_pago)
+

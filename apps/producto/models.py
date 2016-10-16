@@ -1,28 +1,24 @@
 from django.db import models
 
 
-class Imagen_Bebida(models.Model):
-    pass
 
-class Imagen_Comida(models.Model):
-    pass
 
 class Linea(models.Model):
-    descripcion_linea = models.CharField(max_length=15)
+    descripcion_linea = models.TextField(max_length=30)
 
     def __str__(self):
         return '{}'.format(self.descripcion_linea)
 
 
 class Capacidad(models.Model):
-    descripcion_capacidad = models.CharField(max_length=6)
+    descripcion_capacidad = models.TextField(max_length=30)
 
     def __str__(self):
         return '{}'.format(self.descripcion_capacidad)
 
 
 class Bebida(models.Model):
-    cod_bebida = models.IntegerField(primary_key=True, max_length=15)
+    cod_bebida = models.IntegerField(primary_key=True)
     nombre_bebida = models.CharField(max_length=30)
     precio_bebida = models.FloatField()
     disponibilidad_bebida = models.BooleanField()
@@ -36,7 +32,7 @@ class Bebida(models.Model):
 
 class Categoria(models.Model):
     cod_categoria = models.AutoField(primary_key=True)
-    descripcion_categoria = models.CharField(max_length=15)
+    descripcion_categoria = models.TextField(max_length=30)
 
     def __str__(self):
         return '{}'.format(self.descripcion_categoria)
@@ -45,7 +41,7 @@ class Categoria(models.Model):
 class Comida(models.Model):
     cod_comida = models.AutoField(primary_key=True)
     nombre_comida = models.CharField(max_length=20)
-    descripcion_comida = models.CharField(max_length=50)
+    descripcion_comida = models.TextField(max_length=150)
     precio_comida = models.FloatField()
     disponibilidad_comida = models.BooleanField()
 
@@ -53,3 +49,17 @@ class Comida(models.Model):
 
     def __str__(self):
         return '{}'.format(self.nombre_comida)
+
+class Imagen_Bebida(models.Model):
+    img_bebida = models.ImageField(upload_to='img_bebidas')
+    bebida = models.OneToOneField(Bebida)
+
+    def __str__(self):
+        return '{}'.format(self.bebida)
+
+class Imagen_Comida(models.Model):
+    img_comida = models.ImageField(upload_to='img_comidas')
+    comida = models.OneToOneField(Comida)
+
+    def __str__(self):
+        return '{}'.format(self.comida)
