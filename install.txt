@@ -1,12 +1,6 @@
--controlador MySql
-instalar xampp para tener phpmyadmin
-luego cree la base de datos comemosalgo
-despues
-pip install cymysql
-pip install django-cymysql
-
-para verificar que este todo correcto
+pip install psycopg2
 python manage.py check
-
-migrar
 python manage.py migrate
+
+instalar postgres
+crear base de datos "comemosalgo"
