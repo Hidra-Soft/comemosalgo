@@ -12,12 +12,13 @@ class Departamento(models.Model):
 
 class Localidad(models.Model):
     codigo = models.IntegerField(primary_key=True)
-    localidad =models.CharField(max_length=50)
-
-    def __str__(self):
-        return '{}'.format(self.localidad)
+    nombre =models.CharField(max_length=50)
 
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{}'.format(self.nombre)
+
 
 class Domicilio(models.Model):
     codigo = models.AutoField(primary_key= True)

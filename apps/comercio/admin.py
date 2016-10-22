@@ -3,27 +3,27 @@ from apps.comercio.models import Comercio, Domicilio, Pago, Telefono, Departamen
 
 
 class ComercioAdmin(admin.ModelAdmin):
-    list_display = ('cod_comercio','nombre_cadena','nombre_comercio','rubro','descripcion','disponibilidad','domicilio')
+    list_display = ('codigo','nombre','rubro','descripcion','disponibilidad','domicilio', 'imagen')
 
 
 class DomicilioAdmin(admin.ModelAdmin):
-    list_display = ('cod_domicilio','calle','nro_calle','coordenadas','localidad')
+    list_display = ('codigo','calle','numero','coordenadas','localidad')
 
 
 class PagoAdmin(admin.ModelAdmin):
-    list_display = ('cod_pago','nombre_pago','descripcion','disponibilidad_pago')
+    list_display = ('codigo','nombre','descripcion','disponibilidad')
 
 
 class TelefonoAdmin(admin.ModelAdmin):
-    list_display = ('nro_tel','descripcion','disponibilidad_tel','comercio')
+    list_display = ('numero','descripcion','disponibilidad','comercio')
 
 
 class DepartamentoAdmin(admin.ModelAdmin):
-    list_display = ('cod_depto','nom_depto')
+    list_display = ('codigo','nombre')
 
 
 class LocalidadAdmin(admin.ModelAdmin):
-    list_display = ('cod_localidad','nom_localidad')
+    list_display = ('codigo','nombre', 'departamento')
 
 
 admin.site.register(Comercio, ComercioAdmin)

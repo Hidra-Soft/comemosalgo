@@ -7,3 +7,11 @@
   main {
     flex: 1 0 auto;
   }
+
+  .imgen {
+  width: 20px;
+  height: 10px;
+}
+    p {
+    text-indent: 50px;
+    }

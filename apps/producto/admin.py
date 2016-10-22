@@ -3,31 +3,31 @@ from apps.producto.models import Categoria, Capacidad, Comida, Bebida, Linea, Im
 
 
 class ComidaAdmin(admin.ModelAdmin):
-    list_display = ('cod_comida','nombre_comida','descripcion_comida','precio_comida','disponibilidad_comida',)
+    list_display = ('codigo','nombre','descripcion','precio','disponibilidad',)
 
 
 class BebidaAdmin(admin.ModelAdmin):
-    list_display = ('cod_bebida', 'nombre_bebida','precio_bebida', 'disponibilidad_bebida','capacidad','linea')
+    list_display = ('codigo', 'nombre','precio', 'disponibilidad','capacidad','linea')
 
 
 class CapacidadAdmin(admin.ModelAdmin):
-    list_display = ('id','descripcion_capacidad')
+    list_display = ('id','descripcion')
 
 
 class LineaAdmin(admin.ModelAdmin):
-    list_display = ('id','descripcion_linea')
+    list_display = ('id','descripcion')
 
 
 class CategoriaAdmin(admin.ModelAdmin):
-    list_display = ('cod_categoria','descripcion_categoria')
+    list_display = ('codigo','descripcion')
 
 
 class Imagen_ComidaAdmin(admin.ModelAdmin):
-    list_display = ('id','img_comida','comida')
+    list_display = ('id', 'imagen','comida')
 
 
 class Imagen_BebidaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'img_bebida', 'bebida')
+    list_display = ('id', 'imagen', 'bebida')
 
 
 
