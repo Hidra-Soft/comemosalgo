@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="{% static 'css/materialize.css' %}">
+        <title>{% block title %} Document {% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body class="blue-grey darken-4">
+        <!-- Barra de navegacion -->
+        <div class="navbar-fixed">
+            <nav class="teal lighten-2">
+                <div class="nav_wrapper">
+                    <a href="#" class="brand-logo">Comemos Algo</a>
+                    <ul>
+                        <li><a href="#">Registrarse</a></li>
+                        <li><a href="#">Iniciar Sesion</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <!--Contenido-->
+
+        <!--Footer-->
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Comemos Algo</h5>
+                        <p class="grey-text text-lighten-4">Seguinos en</p>
+                        <div>
+                            <a href="#"><img src="{% static 'img/social/facebook.png' %}" alt="Facebook"></a>
+                            <a href="#"><img src="{% static 'img/social/google.png' %}" alt="Google+"></a>
+                            <a href="#"><img src="{% static 'img/social/twitter.png' %}" alt="Twitter"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    Team HidraSoft
+                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Scripts-->
+        <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+        <script src="{% static 'js/materialize.js' %}"></script>
+    </body>
+
+
+</html>
