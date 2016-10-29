@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if object_list %}
+    <h2 class="header">Resultado de Busqueda</h2>
+
+    {% for comercio in object_list %}
+        <h1>{{ comercio.nombre }}</h1>
+        <p>Fecha de inicio: <i>{{ comercio.imagen }}</i></p>
+        <p>Fecha de fin: <i>{{ comercio.descripcion }}</i></p>
+     {% endfor %}
+
+     {% else %}
+        <h1>No se encontro el Comercio</h1>
+     {% endif %}
+
+{% endblock %}

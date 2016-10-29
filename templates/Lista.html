@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+ <div class="col s12 m6">
+{% if object_list %}
+    <h2 class="header">Resultado de Busqueda</h2>
+    {% for comercio in object_list %}
+     <div class="card horizontal">
+      <div class="card-image">
+        <img src="{{ comercio.imagen }}">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+            <p>{{ comercio.codigo }}</p>
+            <h3>{{ comercio.nombre }}</h3>
+            <p>{{ comercio.rubro }}</p>
+            <p>{{ comercio.horarios }}</p>
+            <p>{{ comercio.descripcion }}</p>
+            <p>{{ comercio.disponibilidad }}</p>
+            <p>{{ comercio.domicilio }}</p>
+        </div>
+        <div class="card-action">
+          <a href="">Ver mas</a>
+        </div>
+      </div>
+    </div>
+     {% endfor %}
+     {% else %}
+        <h1>No se encontraron de Comercios</h1>
+     {% endif %}
+ </div>
+</div>
+{% endblock %}
