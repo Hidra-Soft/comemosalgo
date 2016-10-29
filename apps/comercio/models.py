@@ -1,18 +1,17 @@
 from django.db import models
 
 
-
 class Departamento(models.Model):
     codigo = models.IntegerField(primary_key=True)
     nombre = models.CharField(max_length=50)
 
-
     def __str__(self):
         return '{}'.format(self.nombre)
 
+
 class Localidad(models.Model):
     codigo = models.IntegerField(primary_key=True)
-    nombre =models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50)
 
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
 
@@ -21,7 +20,7 @@ class Localidad(models.Model):
 
 
 class Domicilio(models.Model):
-    codigo = models.AutoField(primary_key= True)
+    codigo = models.AutoField(primary_key=True)
     calle = models.CharField(max_length=50)
     numero = models.IntegerField()
     coordenadas = models.CharField(max_length=30)
@@ -33,21 +32,22 @@ class Domicilio(models.Model):
 
 
 class Comercio(models.Model):
-    codigo = models.AutoField(primary_key= True)
+    codigo = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=40)
     rubro = models.CharField(max_length=20)
     horarios = models.CharField(max_length=50)
     descripcion = models.TextField(max_length=150)
     disponibilidad = models.BooleanField()
 
-    domicilio = models.OneToOneField(Domicilio, on_delete= models.CASCADE)
+    domicilio = models.OneToOneField(Domicilio, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='img_comercios')
 
     def __str__(self):
         return 'comercio: {}'.format(self.nombre)
 
+
 class Telefono(models.Model):
-    numero = models.CharField(primary_key= True, max_length=25)
+    numero = models.CharField(primary_key=True, max_length=25)
     descripcion = models.TextField(max_length=30)
     disponibilidad = models.BooleanField()
 
@@ -55,6 +55,7 @@ class Telefono(models.Model):
 
     def __str__(self):
         return '{}'.format(self.numero)
+
 
 class Pago(models.Model):
     codigo = models.AutoField(primary_key=True)
@@ -66,4 +67,3 @@ class Pago(models.Model):
 
     def __str__(self):
         return '{}'.format(self.nombre)
-
