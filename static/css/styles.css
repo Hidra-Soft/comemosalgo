@@ -1,17 +1,39 @@
-  body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
+.popup-position{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100%;
 
-  main {
-    flex: 1 0 auto;
-  }
-
-  .imgen {
-  width: 20px;
-  height: 10px;
 }
-    p {
-    text-indent: 50px;
-    }
+#popup_contenido_sesion{
+    width: 300px; margin: 70px auto; text-align: left;
+    background-color: #FFF;
+    padding: 5px;
+    border-radius: 5px;
+    animation-name: aparecer;
+    animation-duration: 1s;
+}
+@keyframes aparecer {
+    from {opacity: 0; }
+    to { opacity: 5;}
+}
+#popup_contenido_registro{
+    width: 700px; margin: 70px auto; text-align: left;
+    background-color: #FFF;
+    padding: 5px;
+    border-radius: 5px;
+    animation-name: aparecer;
+    animation-duration: 1s;
+}
+.close {
+    width: 20px;
+    height: 20px;
+
+}
+.close:hover {
+    background-color: black;
+    border-radius: 10px;
+}
