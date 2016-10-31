@@ -13,6 +13,11 @@
             <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
             <script language="JavaScript" src="{% static 'js/script.js' %}"></script>
             <script src="{% static 'js/materialize.js' %}"></script>
+            <script language="JavaScript">
+                $(document).ready(function(){
+                    $('.parallax').parallax();
+                });
+            </script>
         {% endblock %}
 
         <title>{% block title %} Document {% endblock %}</title>
@@ -149,6 +154,11 @@
         </div>
         <!-- Fin Barra de navegacion -->
 
+        <div class="parallax-container">
+            <div class="parallax">
+                <img src="{% static 'img/parallax/1.png'%}">
+            </div>
+        </div>
 
         <!--Contenido-->
 
