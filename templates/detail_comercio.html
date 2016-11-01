@@ -2,11 +2,26 @@
 
 {% block content %}
 
+<<<<<<< HEAD
         <h1>{{ comercio.nombre }}</h1>
         <img src="{{ comercio.imagen }}"></img>
         <p>Horarios: <i>{{ comercio.horarios }}</i></p>
         <p>Rubro: <i>{{ comercio.rubro }}</i></p>
         <p>Domicilio: <i>{{ comercio.domicilio }}</i></p>
         <p>Descripcion: <i>{{ comercio.descripcion }}</i></p>
+=======
+{% if object_list %}
+    <h2 class="header">Resultado de Busqueda</h2>
+
+    {% for comercio in object_list %}
+        <h1>{{ comercio.nombre }}</h1>
+        <p>Fecha de inicio: <i>{{ comercio.imagen }}</i></p>
+        <p>Fecha de fin: <i>{{ comercio.descripcion }}</i></p>
+     {% endfor %}
+
+     {% else %}
+        <h1>No se encontro el Comercio</h1>
+     {% endif %}
+>>>>>>> 2894886b659a7f4eae0f35db211eb8e6dbd2ba58
 
 {% endblock %}
