@@ -61,3 +61,13 @@ height: 450px;
     background-color: black;
     border-radius: 10px;
 }
+
+#ico_search1, #ico_search2{
+    position:absolute; top:55px;
+
+}
+
+#ico_close1, #ico_close2{
+    position:absolute; top:5px;
+}
+
