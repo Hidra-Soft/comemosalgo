@@ -1,43 +1,34 @@
 from django.contrib import admin
-from apps.producto.models import (
-    Categoria,
-    Capacidad,
-    Comida,
-    Bebida,
-    Linea,
-    Imagen_Bebida,
-    Imagen_Comida
-)
+from apps.producto.models import Categoria, Capacidad, Comida, Bebida, Linea, Imagen_Bebida, Imagen_Comida
 
 
 class ComidaAdmin(admin.ModelAdmin):
-    list_display = ('codigo', 'nombre', 'descripcion', 'precio',
-                    'disponibilidad',)
+    list_display = ('codigo','nombre','descripcion','precio','disponibilidad',)
 
 
 class BebidaAdmin(admin.ModelAdmin):
-    list_display = ('codigo', 'nombre', 'precio', 'disponibilidad',
-                    'capacidad', 'linea')
+    list_display = ('codigo', 'nombre','precio', 'disponibilidad','capacidad','linea')
 
 
 class CapacidadAdmin(admin.ModelAdmin):
-    list_display = ('id', 'descripcion')
+    list_display = ('id','descripcion')
 
 
 class LineaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'descripcion')
+    list_display = ('id','descripcion')
 
 
 class CategoriaAdmin(admin.ModelAdmin):
-    list_display = ('codigo', 'descripcion')
+    list_display = ('codigo','descripcion')
 
 
 class Imagen_ComidaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'imagen', 'comida')
+    list_display = ('id', 'imagen','comida')
 
 
 class Imagen_BebidaAdmin(admin.ModelAdmin):
     list_display = ('id', 'imagen', 'bebida')
+
 
 
 admin.site.register(Comida, ComidaAdmin)

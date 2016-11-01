@@ -48,14 +48,12 @@ class Comida(models.Model):
     def __str__(self):
         return '{}'.format(self.nombre)
 
-
 class Imagen_Bebida(models.Model):
     imagen = models.ImageField(upload_to='img_bebidas')
     bebida = models.OneToOneField(Bebida)
 
     def __str__(self):
         return '{}'.format(self.bebida)
-
 
 class Imagen_Comida(models.Model):
     imagen = models.ImageField(upload_to='img_comidas')
