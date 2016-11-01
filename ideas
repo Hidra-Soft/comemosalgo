@@ -3,3 +3,19 @@
 - Ver el tema de las direcciones de los comercios en el modelo, deberian ser many, to many.
 - Buscar ejemplo para filtrar la busqueda
 - 
+
+
+// A cambiar en la BD
+
+* esta no seria una modificacion en la bd, sino en algunos tipos de datos y en la forma de mostrar los datos en el admin
+    - En el model comercio:
+        -  Al campo rubro lo podemos hacer una lista desplegable, con los que pueda elegir, asi nos queda todo igual en bd
+        - a horarios podemos cambiar el tipo de dato y que seleccione un horario.
+          ademas que tenga un campo de horario apertura, y otro cierre
+          y la posibilidad de agregar otro horario, como por ejemplo un turno mañana y tarde
+        - Domicilio, localidad y departamento deberia mostrar en la misma pantalla del admin creo ?
+          ademas se deben poder repetir las localidades y departamentos en diferentes comercios.
+        - Falta que el comercio pueda elegir la forma de pago que pueda tener, tambien en lista desplegable
+        - Falta que el commercio introduzca telefonos
+
+        - FALTA VER COMO RELACIONAMOS LAS COMIDAS, Y BEBIDAS CON EL COMERCIO, para el template detail_comercio.html
