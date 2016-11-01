@@ -2846,7 +2846,7 @@ video.responsive-video {
 }
 
 .parallax img {
-  display: inherit;
+  display: none;
   position: absolute;
   left: 50%;
   bottom: 0;
