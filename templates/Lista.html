@@ -1,11 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<<<<<<< HEAD
+
  <div class="col s12 m12">
-=======
- <div class="col s12 m6">
->>>>>>> 2894886b659a7f4eae0f35db211eb8e6dbd2ba58
+
 {% if object_list %}
     <h2 class="header">Resultado de Busqueda</h2>
     {% for comercio in object_list %}
@@ -24,11 +22,8 @@
             <p>{{ comercio.domicilio }}</p>
         </div>
         <div class="card-action">
-<<<<<<< HEAD
           <a href="{% url 'comercio:detalle' comercio.pk %}">Ver mas</a>
-=======
-          <a href="">Ver mas</a>
->>>>>>> 2894886b659a7f4eae0f35db211eb8e6dbd2ba58
+
         </div>
       </div>
     </div>
