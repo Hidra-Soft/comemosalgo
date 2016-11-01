@@ -39,7 +39,7 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
 )
 
-EXTERNAL_APPS = ()
+EXTERNAL_APPS = ('leaflet',)
 
 PROJECT_APPS = (
     'apps.comercio',

@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load leaflet_tags %}
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -7,18 +8,22 @@
             <link rel="stylesheet" href="{% static 'css/styles.css' %}">
             <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
             <link rel="stylesheet" href="{% static 'css/materialize.css' %}">
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
         {% endblock %}
 
         {% block javascript %}
             <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
             <script language="JavaScript" src="{% static 'js/script.js' %}"></script>
             <script src="{% static 'js/materialize.js' %}"></script>
+            <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
             <script language="JavaScript">
                 $(document).ready(function(){
                     $('.parallax').parallax();
                 });
             </script>
         {% endblock %}
+        {% leaflet_js %}
+        {% leaflet_css %}
 
         <title>{% block title %} Document {% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
