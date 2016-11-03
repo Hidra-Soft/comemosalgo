@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load account %}
+{% load socialaccount %}
+{% providers_media_js %}
 
 {% block title %}
 ComemosAlgo
@@ -7,6 +10,8 @@ ComemosAlgo
 
 
 {% block content %}
+
+
 
     <div class="col s12" id="banner_inicio">
         <div class="row container"  id="banner_inicio_buscador">
@@ -49,6 +54,23 @@ ComemosAlgo
 <div class="section white">
     <div class="row container">
          <div class="row">
+             {% if request.user.is_authenticated %}
+                <a href="/accounts/logout/" class="pull-right">Logout</a>
+                {% if request.user.first_name or request.user.last_name %}
+
+                    {{ request.user.first_name }} {{ request.user.last_name }}
+                {% else %}
+                    {{ request.user.username }}
+                {% endif %}
+                {% if request.user.profile.account_verified %} (verified) {% else %} (unverified) {% endif %}
+
+            {% else %}
+                <a href="/accounts/login/" class="pull-right">Login</a>
+                <a href="{% provider_login_url 'facebook' method='js_sdk' %}"><img src="http://sellrshop.com/images/fblogin_button.png" style="width:15%"/></a>
+            {% endif %}
+
+             {% user_display user %}
+             {{ user_display }} has logged in...  <img src="{{ request.user.profile.profile_image_url }}"/>
              <h4>Los mas visitados</h4>
              <div class="col s6 m3">
                  <div class="card">
