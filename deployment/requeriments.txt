@@ -1,4 +1,14 @@
+defusedxml==0.4.1
 Django==1.10
+django-allauth==0.28.0
+django-contrib-comments==1.7.3
 django-leaflet==0.19.0
+cle
+oauth2==1.9.0.post1
+oauthlib==2.0.0
 Pillow==3.3.1
 psycopg2==2.6.2
+python-openid==2.2.5
+python3-openid==3.0.10
+requests==2.11.1
+requests-oauthlib==0.7.0
