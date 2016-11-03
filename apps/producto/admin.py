@@ -1,17 +1,17 @@
 from django.contrib import admin
-from apps.producto.models import Categoria, Capacidad, Comida, Bebida, Linea, Imagen_Bebida, Imagen_Comida
+from apps.producto.models import Categoria, Capacidad, Comida, Bebida
 
 
 class ComidaAdmin(admin.ModelAdmin):
-    list_display = ('codigo','nombre','descripcion','precio','disponibilidad',)
+    list_display = ('codigo','nombre','descripcion','precio','disponibilidad', 'imagen')
 
 
 class BebidaAdmin(admin.ModelAdmin):
-    list_display = ('codigo', 'nombre','precio', 'disponibilidad','capacidad','linea')
+    list_display = ('nombre','precio', 'disponibilidad','capacidad', 'imagen')
 
 
 class CapacidadAdmin(admin.ModelAdmin):
-    list_display = ('id','descripcion')
+    list_display = ('codigo','descripcion')
 
 
 class LineaAdmin(admin.ModelAdmin):
@@ -19,7 +19,7 @@ class LineaAdmin(admin.ModelAdmin):
 
 
 class CategoriaAdmin(admin.ModelAdmin):
-    list_display = ('codigo','descripcion')
+    list_display = ('codigo', 'descripcion')
 
 
 class Imagen_ComidaAdmin(admin.ModelAdmin):
@@ -34,7 +34,4 @@ class Imagen_BebidaAdmin(admin.ModelAdmin):
 admin.site.register(Comida, ComidaAdmin)
 admin.site.register(Bebida, BebidaAdmin)
 admin.site.register(Capacidad, CapacidadAdmin)
-admin.site.register(Linea, LineaAdmin)
 admin.site.register(Categoria, CategoriaAdmin)
-admin.site.register(Imagen_Comida, Imagen_ComidaAdmin)
-admin.site.register(Imagen_Bebida, Imagen_BebidaAdmin)

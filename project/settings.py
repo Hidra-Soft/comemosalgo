@@ -41,6 +41,7 @@ DJANGO_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
 )
 
 EXTERNAL_APPS = (
