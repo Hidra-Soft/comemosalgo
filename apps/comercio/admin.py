@@ -26,7 +26,7 @@ class LocalidadAdmin(admin.ModelAdmin):
     list_display = ('codigo','nombre', 'departamento')
 
 class RubroAdmin(admin.ModelAdmin):
-    list_display = ('id','descripcion')
+    list_display = ('id','nombre')
 
 
 admin.site.register(Comercio, ComercioAdmin)
