@@ -3,7 +3,7 @@ from apps.comercio.models import Comercio, Pago, Telefono, Departamento, Localid
 
 
 class ComercioAdmin(admin.ModelAdmin):
-    list_display = ('codigo','nombre','rubro','disponibilidad', 'imagen')
+    list_display = ('codigo','nombre','disponibilidad', 'imagen')
 
 
 #class DomicilioAdmin(admin.ModelAdmin):
@@ -14,8 +14,8 @@ class PagoAdmin(admin.ModelAdmin):
     list_display = ('codigo','nombre','descripcion','disponibilidad')
 
 
-class TelefonoAdmin(admin.ModelAdmin):
-    list_display = ('numero','descripcion','comercio')
+#class TelefonoAdmin(admin.ModelAdmin):
+#    list_display = ('numero','descripcion','comercio')
 
 
 class DepartamentoAdmin(admin.ModelAdmin):

@@ -3,7 +3,7 @@ from apps.comercio.models import Comercio
 
 
 class Capacidad(models.Model):
-    codigo = models.AutoField(primary_key=True)
+    codigo = models.CharField(max_length=30)
     descripcion = models.TextField(max_length=30)
 
     def __str__(self):
@@ -17,13 +17,22 @@ class Categoria(models.Model):
     def __str__(self):
         return '{}'.format(self.descripcion)
 
+
+class Categoria_Bebida(models.Model):
+    codigo = models.AutoField(primary_key=True)
+    descripcion = models.TextField(max_length=30)
+
+    def __str__(self):
+        return '{}'.format(self.descripcion)
+
+
 class Bebida(models.Model):
     codigo = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=30)
     precio = models.FloatField()
     disponibilidad = models.BooleanField()
     imagen = models.ImageField(upload_to='img_bebidas', null=True)
-    categoria = models.ManyToManyField(Categoria)
+    categoria = models.ManyToManyField(Categoria_Bebida)
     capacidad = models.ForeignKey(Capacidad, on_delete=models.CASCADE)
 
 
@@ -37,10 +46,8 @@ class Comida(models.Model):
     descripcion = models.TextField(max_length=150)
     precio = models.FloatField()
     disponibilidad = models.BooleanField()
-
     imagen = models.ImageField(upload_to='img_comidas', null=True, blank=True)
     categoria = models.ManyToManyField(Categoria)
-
     comercio = models.ForeignKey(Comercio, on_delete=models.CASCADE, null=True)
 
 

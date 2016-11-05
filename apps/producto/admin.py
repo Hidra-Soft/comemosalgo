@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.producto.models import Categoria, Capacidad, Comida, Bebida
+from apps.producto.models import Categoria, Categoria_Bebida, Capacidad, Comida, Bebida
 
 
 class ComidaAdmin(admin.ModelAdmin):
@@ -14,11 +14,15 @@ class CapacidadAdmin(admin.ModelAdmin):
     list_display = ('codigo','descripcion')
 
 
-class LineaAdmin(admin.ModelAdmin):
-    list_display = ('id','descripcion')
+#class LineaAdmin(admin.ModelAdmin):
+#    list_display = ('id','descripcion')
 
 
 class CategoriaAdmin(admin.ModelAdmin):
+    list_display = ('codigo', 'descripcion')
+
+
+class Categoria_BebidaAdmin(admin.ModelAdmin):
     list_display = ('codigo', 'descripcion')
 
 
@@ -35,3 +39,4 @@ admin.site.register(Comida, ComidaAdmin)
 admin.site.register(Bebida, BebidaAdmin)
 admin.site.register(Capacidad, CapacidadAdmin)
 admin.site.register(Categoria, CategoriaAdmin)
+admin.site.register(Categoria_Bebida, Categoria_BebidaAdmin)
