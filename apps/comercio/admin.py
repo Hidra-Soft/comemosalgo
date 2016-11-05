@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.comercio.models import Comercio, Pago, Telefono, Departamento, Localidad
+from apps.comercio.models import Comercio, Pago, Departamento, Localidad, Rubro
 
 
 class ComercioAdmin(admin.ModelAdmin):
@@ -25,9 +25,13 @@ class DepartamentoAdmin(admin.ModelAdmin):
 class LocalidadAdmin(admin.ModelAdmin):
     list_display = ('codigo','nombre', 'departamento')
 
+class RubroAdmin(admin.ModelAdmin):
+    list_display = ('id','descripcion')
+
 
 admin.site.register(Comercio, ComercioAdmin)
 admin.site.register(Pago, PagoAdmin)
 admin.site.register(Departamento, DepartamentoAdmin)
 admin.site.register(Localidad, LocalidadAdmin)
+admin.site.register(Rubro, RubroAdmin)
 

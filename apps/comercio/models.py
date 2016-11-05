@@ -32,13 +32,13 @@ class Localidad(models.Model):
 #   def __str__(self):
 #        return 'calle {} nro {}'.format(self.calle, self.numero)
 
-class Telefono(models.Model):
-    numero = models.CharField(primary_key= True, max_length=25)
-
+#class Telefono(models.Model):
+#    numero = models.CharField(primary_key= True, max_length=25)
+#
     #comercio = models.ForeignKey(Comercio, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return '{}'.format(self.numero)
+#
+#    def __str__(self):
+#        return '{}'.format(self.numero)
 
 class Pago(models.Model):
     codigo = models.AutoField(primary_key=True)
@@ -65,7 +65,7 @@ class Comercio(models.Model):
     rubro = models.ManyToManyField(Rubro)
 
     horarios = models.CharField(max_length=50)
-    telefonos = models.ForeignKey(Telefono, null=True)
+    telefono = models.CharField(max_length=50, null=True)
     descripcion = models.TextField(max_length=150)
     forma_pago = models.ManyToManyField(Pago)
     disponibilidad = models.BooleanField()
