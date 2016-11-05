@@ -1,7 +1,9 @@
 {% load staticfiles %}
 {% load leaflet_tags %}
+{% load account %}
 {% load socialaccount %}
 {% providers_media_js %}
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -32,12 +34,7 @@
     </head>
 
     <body class="blue-grey darken-4">
-    {% if user.is_authenticated %}
-        <div>
-            <a href="{% url 'account_logout' %}">Cerrar Sesion</a>
-            <a href="/accounts/profile/">Mi cuenta</a>
-        </div>
-    {% else %}
+
 
         <!-- Popup Iniciar Sesion -->
         <!--<div id="popup_sesion" class="popup-position">
@@ -151,17 +148,44 @@
             </div>
         </div>
         -->
-{% endif %}
+
 
         <!-- Barra de navegacion -->
         <div class="navbar-fixed">
             <nav class="teal lighten-2">
                 <div class="nav_wrapper">
                     <a href=""><img src="{% static 'img/img_project/Logo.png'%}" style="width: 11%"/></a>
+
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a class="waves-effect waves-teal " href="javascript:void(0)" onclick="visibilidad('popup_registro');"><i class="material-icons left">perm_identity</i>Registrarse</a></li>
-                        <li><a class="waves-effect waves-teal " href="/accounts/login/" class="pull-right"><i class="material-icons left">vpn_key</i>Iniciar Sesion</a></li>
+                        <!--{% if user.is_authenticated %}
+                            <div>
+                                <a href="{% url 'account_logout' %}">Cerrar Sesion 1</a>
+                                <a href="/accounts/profile/">Mi cuenta 1
+                            </div>
+                        {% endif %}-->
+
+                        {% if request.user.is_authenticated %}
+                            {% if request.user.first_name or request.user.last_name %}
+                                <li><img class="circle responsive-img" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" style="width: 7%"/>
+                                     {{ request.user.first_name }} {{ request.user.last_name }}</li>
+                                <!--{% user_display user %}-->
+                                <li><a href="/accounts/logout/" class="pull-right">Cerrar Sesion</a></li>
+                            <!--{% else %}
+                                {{ request.user.username }}-->
+                            {% endif %}
+                            <!--{% if request.user.profile.account_verified %}
+                                (verified)
+                            {% else %}
+                                (unverified)
+                            {% endif %}-->
+                        {% else %}
+                            <!--<li><a href="/accounts/login/" class="pull-right">Login</a></li>-->
+                            <li><a href="{% provider_login_url 'facebook' method='js_sdk' %}">Iniciar Sesion con Fb</a></li>
+                            <li><a class="waves-effect waves-teal " href="/accounts/login/" class="pull-right"><i class="material-icons left">vpn_key</i>Iniciar Sesion</a></li>
+                        {% endif %}
+                            <!--<li><a class="waves-effect waves-teal " href="javascript:void(0)" onclick="visibilidad('popup_registro');"><i class="material-icons left">perm_identity</i>Registrarse</a></li>-->
                     </ul>
 
                     <ul class="side-nav" id="mobile-demo">
