@@ -1,5 +1,6 @@
 from django.db import models
 from apps.comercio.models import Comercio
+import datetime
 
 
 class Capacidad(models.Model):
@@ -45,6 +46,7 @@ class Comida(models.Model):
     nombre = models.CharField(max_length=20)
     descripcion = models.TextField(max_length=150)
     precio = models.FloatField()
+    descuento = models.FloatField(default=0.00)
     disponibilidad = models.BooleanField()
     imagen = models.ImageField(upload_to='img_comidas', null=True, blank=True)
     categoria = models.ManyToManyField(Categoria)
@@ -53,3 +55,12 @@ class Comida(models.Model):
 
     def __str__(self):
         return '{}'.format(self.nombre)
+
+class Promocion(models.Model):
+    nombre = models.CharField(max_length=50)
+    imagen = models.ImageField(upload_to='img_promociones', null=True, blank=True)
+    descripcion = models.TextField(max_length=200)
+    precio = models.FloatField()
+    fecha_caducidad = models.DateField(default=datetime.datetime.now)
+
+    comercio = models.ForeignKey(Comercio, on_delete=models.CASCADE, null=True)

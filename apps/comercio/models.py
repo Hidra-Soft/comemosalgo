@@ -44,7 +44,7 @@ class Pago(models.Model):
     codigo = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=20)
     descripcion = models.TextField(max_length=50)
-    disponibilidad = models.BooleanField()
+    #disponibilidad = models.BooleanField()
 
 
     def __str__(self):
@@ -53,6 +53,14 @@ class Pago(models.Model):
 class Rubro(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.TextField(max_length=50)
+
+
+    def __str__(self):
+        return '{}'.format(self.nombre)
+
+class Delivery(models.Model):
+    id = models.AutoField(primary_key=True)
+    descripcion = models.TextField(max_length=200)
 
 
     def __str__(self):
@@ -74,6 +82,7 @@ class Comercio(models.Model):
     longitud = models.CharField(max_length=10, null=True)
     localidad = models.ForeignKey(Localidad, null=True)
     imagen = models.ImageField(upload_to='img_comercios')
+    delivery = models.OneToOneField(Delivery, null=True)
 
 
     def __str__(self):
