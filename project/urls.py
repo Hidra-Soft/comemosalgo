@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^comercio/', include('apps.comercio.urls', namespace="comercio")),
     #Auth URLS
     url(r'^accounts/', include('allauth.urls')),
+    url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
 ]

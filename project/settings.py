@@ -46,6 +46,7 @@ DJANGO_APPS = (
 
 EXTERNAL_APPS = (
     'leaflet',
+    'star_ratings',
 )
 
 PROJECT_APPS = (
@@ -82,6 +83,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # allauth specific context processors
                 'django.template.context_processors.request',
+                #'django.core.context_processors.request',
             ],
         },
     },

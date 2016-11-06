@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load leaflet_tags %}
+{% load static %}
+{% load ratings %}
 
 <script>
         var mymap = L.map('mapid').setView([51.505, -0.09], 13);
@@ -37,7 +39,15 @@
                         <p>Domicilio: <i>{{ comercio.domicilio }}</i></p>
                         <p>Descripcion: <i>{{ comercio.descripcion }}</i></p>
 
+                        <!-- Ratings -->
+                        <h4>Puntaje comercio:</h4>
+                        <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+                        <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+                        {% ratings object %}
+
+                        <!-- Ratings -->
                         <h5>Ubicacion</h5>
+
 
                         <div id="mapid" style="width: 100%; height: 400px;"></div>
                                 <script>

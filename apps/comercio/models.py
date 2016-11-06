@@ -42,7 +42,7 @@ class Pago(models.Model):
 
 
     def __str__(self):
-        return '{}'.format(self.nombre)
+        return '{}'.format(self.nombre, self.descripcion)
 
 
 class Rubro(models.Model):
@@ -60,7 +60,7 @@ class Delivery(models.Model):
 
 
     def __str__(self):
-        return '{}'.format(self.nombre)
+        return '{}'.format(self.descripcion)
 
 
 class Telefono(models.Model):
@@ -70,7 +70,7 @@ class Telefono(models.Model):
 
 
     def __str__(self):
-        return '{}'.format(self.nombre)
+        return '{}'.format(self.tipo, self.descripcion)
 
 
 class Comercio(models.Model):
@@ -89,7 +89,8 @@ class Comercio(models.Model):
     #longitud = models.CharField(max_length=10, null=True)
     #localidad = models.ForeignKey(Localidad, null=True)
     imagen = models.ImageField(upload_to='img_comercios')
-    delivery = models.OneToOneField(Delivery, null=True)
+    delivery = models.OneToOneField(Delivery, null=True, blank=True)
+    visitas = models.IntegerField(null=True, blank=True)
 
 
     def __str__(self):

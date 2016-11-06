@@ -16,3 +16,17 @@
           ademas se deben poder repetir las localidades y departamentos en diferentes comercios.
 
         - FALTA VER COMO RELACIONAMOS LAS COMIDAS, Y BEBIDAS CON EL COMERCIO, para el template detail_comercio.html
+
+///////////////////////////////////////////////////////////////////
+
+
+// Para incrementar la visita de alguna pagina
+
+from django.db.models import F
+...
+MyModel.objects.filter(id=...).update(hit_count=F('hit_count')+1)
+
+fuente: http://stackoverflow.com/questions/622652/increment-page-hit-count-in-django?noredirect=1&lq=1
+documentacion models F: https://docs.djangoproject.com/en/dev/topics/db/queries/#filters-can-reference-fields-on-the-model
+
+////////////////////////////////////////////////////////
