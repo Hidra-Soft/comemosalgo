@@ -4,3 +4,4 @@
 */migrations/0*
 *.pyc
 __pycache__
+*/migrations
