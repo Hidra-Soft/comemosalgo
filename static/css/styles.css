@@ -1,20 +1,11 @@
 #banner_inicio{
 background-image: url('../img/parallax/1.png');
 background-size: cover;
-padding: 5%;
 height: 450px;
 }
 
 #banner_inicio_buscador{
     padding:2%;
-    background: rgba(76,76,76,0.50)50%;
-    border-radius: 29px 29px 29px 29px;
-    -moz-border-radius: 29px 29px 29px 29px;
-    -webkit-border-radius: 29px 29px 29px 29px;
-    border: 2px none #000000;
-    -webkit-box-shadow: 7px 6px 24px -2px rgba(0,0,0,0.75);
-    -moz-box-shadow: 7px 6px 24px -2px rgba(0,0,0,0.75);
-    box-shadow: 7px 6px 24px -2px rgba(0,0,0,0.75);
 }
 
 .popup-position{

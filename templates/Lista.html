@@ -6,29 +6,88 @@
         <div class="row container">
              <div class="col s12 m12">
 
-            {% if object_list %}
-                <h2 class="header">Resultado de Busqueda</h2>
-                {% for comercio in object_list %}
-                 <div class="card horizontal">
-                  <div class="card-image">
-                    <img src="{{ comercio.imagen }}">
-                  </div>
-                  <div class="card-stacked">
-                    <div class="card-content">
-                        <p>{{ comercio.codigo }}</p>
-                        <h3>{{ comercio.nombre }}</h3>
-                        <p>{{ comercio.rubro }}</p>
-                        <p>{{ comercio.horarios }}</p>
-                        <p>{{ comercio.descripcion }}</p>
-                        <p>{{ comercio.disponibilidad }}</p>
-                        <p>{{ comercio.domicilio }}</p>
-                    </div>
-                    <div class="card-action">
-                      <a href="{% url 'comercio:detalle' comercio.pk %}">Ver mas</a>
+                <script>
+                // Note: This example requires that you consent to location sharing when
+                // prompted by your browser. If you see the error "The Geolocation service
+                // failed.", it means you probably did not give permission for the browser to
+                // locate you.
 
-                    </div>
-                  </div>
-                </div>
+                function initMap() {
+
+
+                  var map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: -34.397, lng: 150.644},
+                    zoom: 16
+                  });
+                {% if object_list %}
+                {% for comercio in object_list %}
+                  var myLatLng = {lat: {{ comercio.latitud }}, lng: {{ comercio.longitud }}};
+                  var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: '{{ comercio.nombre }}'
+                  });
+                {% endfor %}
+                  var infoWindow = new google.maps.InfoWindow({map: map});
+
+                  // Try HTML5 geolocation.
+                  if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                      var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                      };
+
+                      infoWindow.setPosition(pos);
+                      infoWindow.setContent(' Usted esta Aqui');
+                      map.setCenter(pos);
+                    }, function() {
+                      handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                  } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                  }
+                }
+
+                function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                  infoWindow.setPosition(pos);
+                  infoWindow.setContent(browserHasGeolocation ?
+                                        'Error: The Geolocation service failed.' :
+                                        'Error: Your browser doesn\'t support geolocation.');
+
+
+                }
+
+                </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHpVXm1_SpgpAUOMwQ-c9PC-dtnklO3n0&signed_in=true&callback=initMap" async defer>
+                </script>
+
+
+                <h2 class="header">Resultado de Busqueda</h2>
+                <div id="map" style="width: 100%; height: 400px;"></div>
+
+
+                {% for comercio in object_list %}
+                 <div class="row card horizontal">
+                      <div class="col s3">
+                          <div class="card-image">
+                            <img src="{{ comercio.imagen }}">
+                          </div>
+                      </div>
+                        <div class="col s9">
+                          <div class="card-stacked">
+                            <div class="card-content">
+                                <a href="{% url 'comercio:detalle' comercio.pk %}"><h3>{{ comercio.nombre }}</h3></a>
+                                <p>{{ comercio.rubro }}</p>
+                                <p>{{ comercio.horarios }}</p>
+                                <p>{{ comercio.domicilio }}</p>
+                                <p>{{ comercio.direccion }}</p>
+                            </div>
+                          </div>
+                        </div>
+                 </div>
+
                  {% endfor %}
                  {% else %}
                     <h1>No se encontraron de Comercios</h1>

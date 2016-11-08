@@ -23,7 +23,7 @@
             <div class="col s1"></div>
             <div class="section white col s10">
                 <h1>{{ comercio.nombre }}</h1>
-                <img src="{{comercio.imagen}}">
+                <img src="{{comercio.imagen.url}}">
                 <div class="row">
                     <div class="col s10 offset-s1">
                       <ul class="tabs">
@@ -35,7 +35,7 @@
 
                     <!-- Tab Informacion -->
                     <div id="test1" class="col s12">
-                        <table>
+                        <table class="striped">
                             <tbody>
                               <tr>
                                 <td><h5>Horarios:</h5></td>
