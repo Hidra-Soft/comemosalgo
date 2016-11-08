@@ -291,25 +291,9 @@ ComemosAlgo
 
          <div class="row">
              <h4>Opiniones</h4>
-                <div class="col s6 m3">
 
-                    <div class="card">
-
-                        <div class="card-image">
-                            <img src="{% static 'img/logos_comercios/logo1.png' %}" alt="Nombre Comercio">
-                        </div>
-
-                        <div class="card-content">
-                            <span class="card-title">Comercio 1</span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                                I am convenient because I require little markup to use effectively.</p>
-                        </div>
-
-                        <div class="card-action">
-                            <a href="#">Ver mas</a>
-                        </div>
-                    </div>
-                </div>
+             {% if comentarios %}
+             {% for comentario in comentarios%}
 
                 <div class="col s6 m3">
                     <div class="card">
@@ -318,9 +302,9 @@ ComemosAlgo
                         </div>
 
                         <div class="card-content">
-                            <span class="card-title">Comercio 2</span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
+                            <span class="card-title">{{comentario.pk}}</span>
+                            <p>{{comentario.user_name}}</p>
+                            <p>{{comentario.comment}}</p>
                         </div>
 
                         <div class="card-action">
@@ -328,42 +312,8 @@ ComemosAlgo
                         </div>
                     </div>
                 </div>
-
-                <div class="col s6 m3">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{% static 'img/logos_comercios/logo1.png' %}" alt="Nombre Comercio">
-                        </div>
-
-                        <div class="card-content">
-                            <span class="card-title">Comercio 3</span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
-                        </div>
-
-                        <div class="card-action">
-                            <a href="#">Ver mas</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s6 m3">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{% static 'img/logos_comercios/logo1.png' %}" alt="Nombre Comercio">
-                        </div>
-
-                        <div class="card-content">
-                            <span class="card-title">Comercio 3</span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
-                        </div>
-
-                        <div class="card-action">
-                            <a href="#">Ver mas</a>
-                        </div>
-                    </div>
-                </div>
+             {% endfor %}
+             {% endif %}
          </div>
     </div>
 </div>
