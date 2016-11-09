@@ -43,7 +43,13 @@
                               </tr>
                               <tr>
                                 <td><h5>Rubro:</h5></td>
-                                <td><i>{{ comercio.rubro }}</i></td>
+                                <td>
+                                    <ul>
+                                        {% for r in comercio.rubro.all %}
+                                            <li>{{ r }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
                               </tr>
                               <tr>
                                 <td><h5>Domicilio:</h5></td>

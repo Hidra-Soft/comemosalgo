@@ -14,10 +14,6 @@ class CapacidadAdmin(admin.ModelAdmin):
     list_display = ('id','descripcion')
 
 
-#class LineaAdmin(admin.ModelAdmin):
-#    list_display = ('id','descripcion')
-
-
 class CategoriaAdmin(admin.ModelAdmin):
     list_display = ('codigo', 'descripcion')
 
@@ -35,6 +31,7 @@ class Imagen_BebidaAdmin(admin.ModelAdmin):
 
 class PromocionAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'imagen', 'descripcion', 'precio', 'fecha_caducidad', 'comercio')
+
 
 
 admin.site.register(Comida, ComidaAdmin)
