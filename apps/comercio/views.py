@@ -23,12 +23,13 @@ class ListaComercio(ListView):
     template_name = "Lista.html"
 
 
+
 class DetalleComercio(DetailView):
     model = Comercio
     #comidas = Comida.objects.filter(comercio = 3, disponibilidad=True)
     comidas = Comida.objects.all()
     queryset = Comercio.objects.filter(disponibilidad=True)
-    template_name = "detail_comercio.html"
+    template_name = "comercio/detail_comercio.html"
 
     def get_context_data(self, **kwargs):
         self.object.incrementar_visita()
