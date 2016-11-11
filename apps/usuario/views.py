@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 class RegistroUsuario(CreateView):
     model = User
-    template_name = "registrar.html"
+    template_name = "usuario/registrar.html"
     form_class = RegistroForm
     success_url = reverse_lazy('index:index')
 

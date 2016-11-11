@@ -15,13 +15,13 @@ def index(request):
 
 class ListaComercio(ListView):
     model = Comercio
-    template_name = "Lista.html"
+    template_name = "comercio/lista.html"
 
 
 class DetalleComercio(DetailView):
     model = Comercio
     queryset = Comercio.objects.filter(disponibilidad=True)
-    template_name = "detail_comercio.html"
+    template_name = "comercio/detail_comercio.html"
 
     def get_context_data(self, **kwargs):
         self.object.incrementar_visita()
