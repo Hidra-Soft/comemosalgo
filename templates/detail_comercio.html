@@ -3,19 +3,8 @@
 {% load static %}
 {% load ratings %}
 {% load comments %}
-
-<script>
-        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-
-        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-            maxZoom: 18,
-            id: 'your.mapbox.project.id',
-            accessToken: 'your.mapbox.public.access.token'
-        }).addTo(mymap);
-
-        var marker = L.marker([51.5, -0.09]).addTo(mymap);
-</script>
+{% load to_point %}
+import string
 
 {% block content %}
      {% if object %}
@@ -75,27 +64,122 @@
                           </table>
 
                         <h5>Ubicacion</h5><br>
-                        <div id="mapid" style="width: 100%; height: 400px;"></div>
+                        <input type="text" id="mode" value="DRIVING" hidden>
+                        <div id="map" style="height:60%"></div><br></br>
                             <script>
-                                    var mymap = L.map('mapid').setView([{{comercio.latitud}}, {{comercio.longitud}}], 16);
+                        var pos1;
+                        function initMap() {
+                          var directionsDisplay = new google.maps.DirectionsRenderer;
+                          var directionsService = new google.maps.DirectionsService;
 
-                                    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
-                                        maxZoom: 50,
-                                        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-                                            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                                            'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-                                        id: 'mapbox.streets'
-                                    }).addTo(mymap);
+                          var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 14,
+                            center: {lat: 37.77, lng: -122.447}
+                          });
 
-                                    L.marker([{{comercio.latitud}}, {{comercio.longitud}}]).addTo(mymap)
+                          directionsDisplay.setMap(map);
 
-                                    mymap.on('click', onMapClick);
-                                </script><br><br>
+
+
+                          // Try HTML5 geolocation.
+                          var infoWindow = new google.maps.InfoWindow({map: map});
+
+                          if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                              var pos = {lat: position.coords.latitude, lng: position.coords.longitude};
+                              pos1 = pos;
+                              infoWindow.setPosition(pos);
+                              infoWindow.setContent('Usted esta Aqui');
+                              map.setCenter(pos);
+                              calculateAndDisplayRoute(directionsService, directionsDisplay, pos1);
+                            }, function() {
+                              handleLocationError(true, infoWindow, map.getCenter());
+                            });
+                          } else {
+                            // Browser doesn't support Geolocation
+                            handleLocationError(false, infoWindow, map.getCenter());
+                          }
+                          document.getElementById('mode').addEventListener('change', function() {
+                              calculateAndDisplayRoute(directionsService, directionsDisplay, pos1);
+                          });
+                        }
+
+                        function calculateAndDisplayRoute(directionsService, directionsDisplay, pos) {
+                          pos1 = pos;
+                          //alert(JSON.stringify(pos1));
+                          // NO LLEGA alert(pos1);
+                          var selectedMode = document.getElementById('mode').value;
+
+                          directionsService.route({
+                            //origin: {lat: -28.476784, lng: -65.783980},
+                            origin: pos1,
+                            destination: {lat: {{comercio.latitud|to_point}}, lng: {{comercio.longitud|to_point}}},
+                            travelMode: google.maps.TravelMode['DRIVING']
+                          }, function(response, status) {
+                            if (status == google.maps.DirectionsStatus.OK) {
+                              directionsDisplay.setDirections(response);
+                            } else {
+                              window.alert('Directions request failed due to ' + status);
+                            }
+                          });
+                        }
+
+                        function handleLocationError(browserHasGeolocation, infoWindow) {
+                          infoWindow.setPosition(pos);
+                          infoWindow.setContent(browserHasGeolocation ?
+                                                'Error: The Geolocation service failed.' :
+                                                'Error: Your browser doesn\'t support geolocation.');
+                        }
+
+                            </script>
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHpVXm1_SpgpAUOMwQ-c9PC-dtnklO3n0&callback=initMap"  async defer></script>
+
                     </div>
-                    <!-- Fin Tab Opiniones -->
+                    <!-- Fin Tab Informacion -->
 
                     <!-- Tab Menu -->
-                    <div id="test2" class="col s12"></div>
+                    <div id="test2" class="col s12">
+
+                          <div class="row">
+                                <div class="col s12 m12">
+                                      <div class="card small">
+                                            <div class="card-image">
+                                                <img src="{% static 'img/banners/Carnes.png'%}">
+                                                <span class="card-title">Carnes</span>
+                                            </div>
+
+                                            <div class="card-content">
+                                            </div>
+                                      </div>
+                                </div>
+                          </div>
+                          <div class="row">
+                                <div class="col s12 m12">
+                                      <div class="card small">
+                                            <div class="card-image">
+                                                <img src="{% static 'img/banners/Sandwichs.png'%}">
+                                                <span class="card-title">Pastas</span>
+                                            </div>
+                                            <div class="card-content">
+                                                <p>ACA VA LA COMIDA QUE SEA DE RUBRO PASTAS</p>
+                                            </div>
+                                      </div>
+                                </div>
+                          </div>
+                          <div class="row">
+                                <div class="col s12 m12">
+                                      <div class="card small">
+                                            <div class="card-image">
+                                                <img src="{% static 'img/banners/Tragos.png'%}">
+                                                <span class="card-title">Tragos</span>
+                                            </div>
+                                            <div class="card-content">
+                                                <p>ACA VA LA COMIDA QUE SEA DE RUBRO TRAGOS</p>
+                                            </div>
+                                      </div>
+                                </div>
+                          </div>
+                    </div>
                     <!-- Fin Tab Menu -->
 
                      <!-- Tab Opiniones -->

@@ -61,17 +61,17 @@ ComemosAlgo
                  <div class="col s6 m3">
                      <div class="card">
                          <div class="card-image">
-                            <img src="{% static 'img/logos_comercios/logo1.png' %}">
+                            <img src="{{ comercio.imagen.url }}">
                          </div>
 
                          <div class="card-content">
-                            <span class="card-title">{{ comercio.nombre }}</span>
+                            <span class="card-title"><a href="{% url 'comercio:detalle' comercio.pk %}">{{ comercio.nombre }}</a></span>
                             <p>I am a very simple card. I am good at containing small bits of information.
                                 I am convenient because I require little markup to use effectively.</p>
                          </div>
 
                          <div class="card-action">
-                             <a href="#">Ver mas</a>
+                             <a href="{% url 'comercio:detalle' comercio.pk %}">Ver Menu</a>
                          </div>
                      </div>
                 </div>
@@ -79,30 +79,6 @@ ComemosAlgo
                  {% endif %}
             </div>
             <!-- Fin Los mas visitadoss -->
-
-            <!-- Novedades Semanales -->
-            <div class="row">
-            <h4>Novedades Semanales!</h4>
-                <div class="col s6 m3">
-
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{% static 'img/logos_comercios/logo1.png' %}" alt="Nombre Comercio">
-                        </div>
-
-                        <div class="card-content">
-                            <span class="card-title">Comercio 1</span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                                I am convenient because I require little markup to use effectively.</p>
-                        </div>
-
-                        <div class="card-action">
-                            <a href="#">Ver mas</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Fin Novedades Semanales -->
 
             <!-- Promociones y Descuentos -->
             <div class="row">

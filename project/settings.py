@@ -38,6 +38,7 @@ DJANGO_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_comments',
+    'django.contrib.gis',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -104,7 +105,15 @@ DATABASES = {
         'PASSWORD': 'postgres',
         'PORT': '5432',
         'HOST': 'localhost',
-    }
+    },
+    'geodjango': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'comemosalgoGPS',
+        'USER': 'geodjango',
+        'PASSWORD': 'geodjango',
+        'PORT': '5432',
+        'HOST': 'localhost',
+    },
 }
 
 
