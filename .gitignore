@@ -1,7 +1,8 @@
 .idea
 
 !*/migrations/__init__.py
-*/migrations/0*
-*.pyc
+*/migrations/*
 __pycache__
-*/migrations
+/apps/comercio/migrations/
+/apps/producto/migrations/
+/apps/usuario/migrations/
