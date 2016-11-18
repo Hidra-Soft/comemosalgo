@@ -5,4 +5,8 @@
 __pycache__
 /apps/comercio/migrations/
 /apps/producto/migrations/
+<<<<<<< HEAD
 /apps/usuario/migrations/
+=======
+/apps/usuario/migrations/
+>>>>>>> 3a4b7bf3b7fa6212651b5434cf8f04e9ae267ba5
