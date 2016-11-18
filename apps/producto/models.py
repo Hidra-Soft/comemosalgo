@@ -62,5 +62,7 @@ class Promocion(models.Model):
     descripcion = models.TextField(max_length=200)
     precio = models.FloatField()
     fecha_caducidad = models.DateField(default=datetime.datetime.now)
-
     comercio = models.ForeignKey(Comercio, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return '{}'.format(self.descripcion)

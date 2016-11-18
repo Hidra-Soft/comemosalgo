@@ -106,14 +106,6 @@ DATABASES = {
         'PORT': '5432',
         'HOST': 'localhost',
     },
-    'geodjango': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'comemosalgoGPS',
-        'USER': 'geodjango',
-        'PASSWORD': 'geodjango',
-        'PORT': '5432',
-        'HOST': 'localhost',
-    },
 }
 
 

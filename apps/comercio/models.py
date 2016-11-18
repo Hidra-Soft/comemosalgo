@@ -1,22 +1,9 @@
 from django.db import models
 import datetime
 
-
-
-#class Departamento(models.Model):
-#    codigo = models.IntegerField(primary_key=True)
-#    nombre = models.CharField(max_length=50)
-#
-#
-#    def __str__(self):
-#        return '{}'.format(self.nombre)
-
-
 class Localidad(models.Model):
     codigo = models.IntegerField(primary_key=True)
     nombre =models.CharField(max_length=50)
-
-    #departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
 
     def __str__(self):
         return '{}'.format(self.nombre)
@@ -91,11 +78,8 @@ class Comercio(models.Model):
     forma_pago = models.ManyToManyField(Pago)
     disponibilidad = models.BooleanField()
     domicilio = models.ForeignKey(Domicilio, null=True)
-    latitud = models.CharField(max_length=10, null=True)
-    longitud = models.CharField(max_length=10, null=True)
-    localidad = models.ForeignKey(Localidad, null=True)
-    imagen = models.ImageField(upload_to='img_comercios')
-    delivery = models.OneToOneField(Delivery, null=True, blank=True)
+    imagen = models.ImageField(upload_to='img_comercios', blank=True)
+    delivery = models.ForeignKey(Delivery, null=True, blank=True)
     visitas = models.IntegerField(default=0)
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
 
