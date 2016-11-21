@@ -35,7 +35,7 @@ class DeliveryAdmin(admin.ModelAdmin):
 
 
 class TelefonoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'tipo', 'descripcion')
+    list_display = ('id', 'tipo', 'numero')
 
 
 class DomicilioAdmin(admin.ModelAdmin):

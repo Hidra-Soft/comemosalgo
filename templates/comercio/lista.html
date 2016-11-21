@@ -77,7 +77,7 @@
                                 <a href="{% url 'comercio:detalle' comercio.pk %}"><h3>{{ comercio.nombre }}</h3></a>
                                 <p>{{ comercio.rubro }}</p>
                                 <p>{{ comercio.horarios }}</p>
-                                <p>{{ comercio.domicilio }}</p>
+                                <p>{{ domicilio.calle }} {{ domicilio.numero }}</p>
                                 <p>{{ comercio.direccion }}</p>
                             </div>
                           </div>
