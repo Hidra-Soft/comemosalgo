@@ -67,7 +67,7 @@ class Telefono(models.Model):
     comercio = models.ForeignKey(Comercio, null=True)
 
     def __str__(self):
-        return '{}'.format(self.tipo, self.descripcion)
+        return '{}'.format(self.tipo, self.numero)
 
 class Localidad(models.Model):
     codigo = models.IntegerField(primary_key=True)
@@ -82,8 +82,8 @@ class Domicilio(models.Model):
     comercio = models.ForeignKey(Comercio, null=True)
     calle = models.CharField(max_length=50)
     numero = models.IntegerField()
-    latitud = models.FloatField()
-    longitud = models.FloatField()
+    latitud = models.CharField(max_length=11)
+    longitud = models.CharField(max_length=11)
     localidad = models.ForeignKey(Localidad)
 
     def __str__(self):

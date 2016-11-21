@@ -1,4 +1,4 @@
-from apps.comercio.models import Comercio
+from apps.comercio.models import Comercio, Domicilio, Telefono
 from apps.producto.models import Promocion, Comida
 from django_comments.models import Comment
 from django.views.generic import ListView, DetailView
@@ -20,7 +20,12 @@ class ListaComercio(ListView):
     #hoy = datetime.datetime.now()
     #vencimiento = Promocion.fecha_caducidad
     #queryset = Promocion.objects.filter(date__range=[hoy, vencimiento])
-    template_name = "Lista.html"
+    template_name = "comercio/lista.html"
+
+        # def get_context_data(self, **kwargs):
+        #     self.object.incrementar_visita()
+        #     context = super().get_context_data(**kwargs)
+        #     context['domicilios'] = Domicilio.objects.filter(comercio = self.object.pk)
 
 
 
@@ -33,5 +38,9 @@ class DetalleComercio(DetailView):
 
     def get_context_data(self, **kwargs):
         self.object.incrementar_visita()
-        return super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
+
+        context['domicilios'] = Domicilio.objects.filter(comercio = self.object.pk)
+        context['telefonos'] = Telefono.objects.filter(comercio = self.object.pk)
+        return context
 
