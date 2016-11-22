@@ -1,21 +1,36 @@
 from django import forms
-from apps.comercio.models import Departamento
+from .models import Comercio
+from django.forms.widgets import DateTimeInput, TextInput, CheckboxInput, CheckboxSelectMultiple, FileInput, Textarea
 
 
-class DepartamentoForm(forms.ModelForm):
+class ComercioRegistroForm(forms.ModelForm):
     class Meta:
-        model = Departamento
-        fields = [
-            'codigo',
+        model = Comercio
+        fields = (
             'nombre',
-        ]
+            'rubro',
+            'horarios',
+            'descripcion',
+            'forma_pago',
+            'imagen',
+            'delivery',
+        )
 
         labels = {
-            'codigo': 'Codigo departamento',
-            'nombre': 'Nombre departamento'
+            'nombre': 'Nombre del Comercio',
+            'rubro': 'Rubro del Comercio',
+            'horarios': 'Horarios del Comercio',
+            'descripcion': 'Descripcion del Comercio',
+            'imagen': 'Seleccione imagen del logo del Comercio',
+            'delivery': 'Cuenta con delivery?',
         }
 
         widgets = {
-            'codigo': forms.TextInput(attrs={'class': 'form-control'}),
-            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'nombre': TextInput(attrs={'class': 'form-control'}),
+            'rubro': TextInput(attrs={'class': 'form-control'}),
+            'horarios': DateTimeInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'descripcion': Textarea(attrs={'class': 'form-control', 'rows':10}),
+            'forma_pago': CheckboxSelectMultiple(attrs={'class': 'form-control'}),
+            'imagen': FileInput(attrs={'class': 'form-control'}),
+            'delivery': CheckboxInput(attrs={'class': 'form-control', 'type': ''}),
         }

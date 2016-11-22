@@ -1,7 +1,9 @@
 from apps.comercio.models import Comercio
+from .forms import ComercioRegistroForm
 from apps.producto.models import Promocion, Comida
 from django_comments.models import Comment
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import FormView
 from django.shortcuts import render
 import datetime
 #from django.core.urlresolvers import reverse_lazy
@@ -20,8 +22,7 @@ class ListaComercio(ListView):
     #hoy = datetime.datetime.now()
     #vencimiento = Promocion.fecha_caducidad
     #queryset = Promocion.objects.filter(date__range=[hoy, vencimiento])
-    template_name = "Lista.html"
-
+    template_name = "comercio/lista.html"
 
 
 class DetalleComercio(DetailView):
@@ -34,4 +35,10 @@ class DetalleComercio(DetailView):
     def get_context_data(self, **kwargs):
         self.object.incrementar_visita()
         return super().get_context_data(**kwargs)
+
+
+class FormularioRegistroComercio(FormView):
+    form_class = ComercioRegistroForm
+    template_name = 'comercio/formulario_registro_comercio.html'
+
 

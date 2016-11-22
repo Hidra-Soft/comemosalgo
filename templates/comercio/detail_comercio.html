@@ -99,9 +99,16 @@ import string
                             // Browser doesn't support Geolocation
                             handleLocationError(false, infoWindow, map.getCenter());
                           }
-                          document.getElementById('mode').addEventListener('change', function() {
-                              calculateAndDisplayRoute(directionsService, directionsDisplay, pos1);
-                          });
+
+
+                          document.getElementById('mode').addEventListener
+                            ('change', function()
+                                {
+                                calculateAndDisplayRoute(directionsService, directionsDisplay, pos1);
+                                }
+                            );
+
+
                         }
 
                         function calculateAndDisplayRoute(directionsService, directionsDisplay, pos) {
@@ -149,6 +156,13 @@ import string
                                             </div>
 
                                             <div class="card-content">
+                                                {%for r in menu_list%}
+                                                    {{ r.nombre }}
+                                                {% endfor %}
+
+                                                {%for r in menu_list2%}
+                                                    {{ r.nombre }}
+                                                {% endfor %}
                                             </div>
                                       </div>
                                 </div>
