@@ -5,7 +5,7 @@ from django.forms import ModelMultipleChoiceField
 
 
 RUBRO_CHOICES = (
-    ('Pizzas', 'Pizzas'),
+    ('Heladeria', 'Heladeria'),
     ("Pastas", "Pastas"),
     ('Carnes', 'Carnes')
 )

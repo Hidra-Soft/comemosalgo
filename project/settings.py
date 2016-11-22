@@ -47,7 +47,6 @@ DJANGO_APPS = (
 )
 
 EXTERNAL_APPS = (
-    'leaflet',
     'star_ratings',
 )
 

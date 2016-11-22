@@ -7,22 +7,24 @@
         <div class=" section white col s8 offset-s2">
             <form action="" method="post" class="col-md-4">
                 {% csrf_token %}
-                {{form}}
 
-               <!-- <div class="input-field inline">
+                <div class="input-field inline">
                     <p>
-                        <i class="material-icons prefix">account_circle</i>
+                        <i class="material-icons prefix">business</i>
                         <label for="{{form.nombre.id_for_label}}">{{form.nombre.label}}</label>
                         {{form.nombre}}
                     </p>
                 </div>
 
                  <div class="input-field inline">
+                     <i class="material-icons prefix">business</i>
+                    <label for="{{form.rubro.id_for_label}}">{{form.rubro.label}}</label>
                     <select multiple>
-                    {% for choice in form.rubro %}
-                        <option value="{{choice.tag}}">{{ choice.tag }}</option>
-                        <label>{{ choice.choice_label }}</label>
-                    {% endfor %}
+                        <li>
+                        {% for rubro in form.rubro %}
+                            <ul><option value="{{rubro.tag}}">{{ rubro.choice }}{{rubro.tag}}</option></ul>
+                        {% endfor %}
+                        </li>
                     </select>
                 </div>
 
@@ -57,8 +59,6 @@
                         </p>
                     {% endfor %}
                 </div>
-
-                -->
             </form>
         </div>
     </div>

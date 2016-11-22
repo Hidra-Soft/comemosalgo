@@ -1,5 +1,4 @@
 {% load staticfiles %}
-{% load leaflet_tags %}
 {% load account %}
 {% load socialaccount %}
 {% providers_media_js %}
@@ -26,8 +25,6 @@
                 });
             </script>
         {% endblock %}
-        {% leaflet_js %}
-        {% leaflet_css %}
 
         <title>{% block title %} Document {% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
