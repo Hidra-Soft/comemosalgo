@@ -2,12 +2,75 @@
 
 
 {% block content %}
-<div class="row">
-    <div class="col s8 offset-s2">
-        <form role="form" method="post" class="col-md-4">
-            {% csrf_token %}
-            {{ form }}
-        </form>
+    <div class="row"></div>
+    <div class="row">
+        <div class=" section white col s8 offset-s2">
+            <form action="" method="post" class="col-md-4">
+                {% csrf_token %}
+                {{form}}
+
+               <!-- <div class="input-field inline">
+                    <p>
+                        <i class="material-icons prefix">account_circle</i>
+                        <label for="{{form.nombre.id_for_label}}">{{form.nombre.label}}</label>
+                        {{form.nombre}}
+                    </p>
+                </div>
+
+                 <div class="input-field inline">
+                    <select multiple>
+                    {% for choice in form.rubro %}
+                        <option value="{{choice.tag}}">{{ choice.tag }}</option>
+                        <label>{{ choice.choice_label }}</label>
+                    {% endfor %}
+                    </select>
+                </div>
+
+                <div class="input-field inline">
+                     <p>
+                        {{form.horarios}}
+                         <label for="{{form.horarios.id_for_label}}">{{form.horarios.label}}</label>
+                     </p>
+                </div>
+
+                <div class="input-field inline">
+                    <label for="{{form.descripcion.id_for_label}}">Descripcion del Comercio</label>
+
+                    {{form.descripcion}}
+                </div>
+
+                <div class="file-field input-field">
+                      <div class="btn">
+                            <span>File</span>
+                            <input type="file">
+                      </div>
+                      <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                      </div>
+                </div>
+
+                <div class="input-field inline">
+                    {% for radio in form.delivery %}
+                        <p>
+                            {{ radio.tag }}
+                            <label for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+                        </p>
+                    {% endfor %}
+                </div>
+
+                -->
+            </form>
+        </div>
     </div>
-</div>
+
+    <script>
+         $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+          });
+
+          $(document).ready(function() {
+            $('select').material_select();
+          });
+    </script>
 {% endblock content %}

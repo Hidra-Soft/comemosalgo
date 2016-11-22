@@ -1,6 +1,14 @@
 from django import forms
-from .models import Comercio
-from django.forms.widgets import DateTimeInput, TextInput, CheckboxInput, CheckboxSelectMultiple, FileInput, Textarea
+from .models import Comercio, Rubro
+from django.forms.widgets import DateTimeInput, TextInput, CheckboxInput, CheckboxSelectMultiple, FileInput, Textarea, SelectMultiple, RadioSelect, ChoiceInput, Select
+from django.forms import ModelMultipleChoiceField
+
+
+RUBRO_CHOICES = (
+    ('Pizzas', 'Pizzas'),
+    ("Pastas", "Pastas"),
+    ('Carnes', 'Carnes')
+)
 
 
 class ComercioRegistroForm(forms.ModelForm):
@@ -13,7 +21,7 @@ class ComercioRegistroForm(forms.ModelForm):
             'descripcion',
             'forma_pago',
             'imagen',
-            'delivery',
+            'delivery'
         )
 
         labels = {
@@ -26,11 +34,11 @@ class ComercioRegistroForm(forms.ModelForm):
         }
 
         widgets = {
-            'nombre': TextInput(attrs={'class': 'form-control'}),
-            'rubro': TextInput(attrs={'class': 'form-control'}),
-            'horarios': DateTimeInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'descripcion': Textarea(attrs={'class': 'form-control', 'rows':10}),
-            'forma_pago': CheckboxSelectMultiple(attrs={'class': 'form-control'}),
-            'imagen': FileInput(attrs={'class': 'form-control'}),
-            'delivery': CheckboxInput(attrs={'class': 'form-control', 'type': ''}),
+            'nombre': TextInput(attrs={'class': 'input-field', 'type': 'text'}),
+            'rubro': SelectMultiple(),
+            'horarios': DateTimeInput(attrs={'class': 'timepicker', 'type': 'time'}),
+            'descripcion': Textarea(attrs={'class': 'materialize-textarea', 'rows':20}),
+            'forma_pago': SelectMultiple(),
+            'imagen': FileInput(attrs={'class': 'input-field validate btn', 'type': 'file'}),
+            'delivery': Select(attrs={'class': '', 'type':''}),
         }
