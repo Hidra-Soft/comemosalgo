@@ -1,5 +1,5 @@
-from apps.comercio.models import Comercio
 from .forms import ComercioRegistroForm
+from apps.comercio.models import Comercio, Domicilio, Telefono
 from apps.producto.models import Promocion, Comida
 from django_comments.models import Comment
 from django.views.generic import ListView, DetailView
@@ -34,7 +34,11 @@ class DetalleComercio(DetailView):
 
     def get_context_data(self, **kwargs):
         self.object.incrementar_visita()
-        return super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
+
+        context['domicilios'] = Domicilio.objects.filter(comercio = self.object.pk)
+        context['telefonos'] = Telefono.objects.filter(comercio = self.object.pk)
+        return context
 
 
 class FormularioRegistroComercio(FormView):
