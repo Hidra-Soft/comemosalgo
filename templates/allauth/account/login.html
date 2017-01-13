@@ -1,0 +1,122 @@
+{% extends "account/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <div class="row center">
+      <h2>{% trans "Sign In" %}</h2>
+  </div>
+
+  {% get_providers as socialaccount_providers %}
+
+  {% if socialaccount_providers %}
+  <div class="row center">
+      <p>Por favor, inicie sesion con su Red Social. O, <a href="{{ signup_url }}">registrese</a> e inicie sesion a continuacion.</p>
+  </div>
+
+  <!--<div class="row socialaccount_ballot">
+      <div class="col s12 center">
+          <ul class="socialaccount_providers">
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+          </ul>
+          <div class="login-or">{% trans 'or' %}</div>
+      </div>
+  </div>-->
+
+    <div class="row">
+        <div class="col s5 offset-s4">
+        {% for provider in socialaccount_providers %}
+            {% if provider.id == "openid" %}
+                {% for brand in provider.get_brands %}
+                    <div class="col s3">
+                        <a title="{{brand.name}}"
+                         class="socialaccount_provider {{provider.id}} {{brand.id}}"
+                         href="{% provider_login_url provider.id openid=brand.openid_url process=process %}"
+                         >{{brand.name}}</a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="col s5">
+              <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}"
+                 href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+                  <img src="{% static 'img/login/'|add:provider.name|add:'.png' %}" width="100%">
+              </a>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+  {% include "socialaccount/snippets/login_extra.html" %}
+
+  {% else %}
+  <div class="row center">
+      <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+  </div>
+  {% endif %}
+
+  <div class="row">
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+
+      <div class="row">
+          <div class="col s6 offset-s3">
+                <!--{{ form.as_p }}-->
+              <form>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <label for="user">Usuario</label>
+                        <input id="user" name="user" type="text" class="validate">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">vpn_key</i>
+                        <input id="password" name="password" type="password" class="validate">
+                        <label for="password">Contraseña</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <div class="switch">
+
+                            <label>
+                              <b>Recordar Usuario:<b>
+                                  No
+                              <input type="checkbox">
+                              <span class="lever"></span>
+                              Si
+                            </label>
+                          </div>
+                    </div>
+                </div>
+                  <br><br>
+              </form>
+                {% if redirect_field_value %}
+          </div>
+      </div>
+
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+
+      <div class="row">
+          <div class="col s12 center">
+              <button class="btn-large green" type="submit">{% trans "Sign In" %}</button>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col s12 center">
+              <a class="btn grey" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+          </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+{% endblock %}

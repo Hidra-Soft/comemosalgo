@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load leaflet_tags %}
+
 {% load static %}
 {% load ratings %}
 {% load comments %}
@@ -19,7 +19,7 @@ import string
                         <li class="tab col s3"><a class="active" href="#test1">Informacion General</a></li>
                         <li class="tab col s3"><a href="#test2">Menu</a></li>
                         {% get_comment_count for comercio.comercio comercio.pk as comment_count %}
-                        <li class="tab col s3"><a href="#test3">Opiniones ({{ comment_count }})</a></li>
+                        <li class="tab col s3"><a href="#test3">Opiniones</a></li>
                       </ul>
 
                     <!-- Tab Informacion -->

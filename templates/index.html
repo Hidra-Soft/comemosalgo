@@ -21,6 +21,13 @@ ComemosAlgo
             </div>
             <div class="row"></div>
             <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
+            <div class="row"></div>
             <div class="row">
                 <form>
                     <div class="input-field col s4">
@@ -50,7 +57,7 @@ ComemosAlgo
     </div>
     <!-- Fin Banner Inicio -->
 
-    <div class="section white">
+    <div class="section">
         <div class="row container">
 
             <!-- Los mas visitadoss -->
@@ -64,15 +71,13 @@ ComemosAlgo
                             <img src="{{ comercio.imagen.url }}">
                          </div>
 
-                         <div class="card-content">
+                         <div class="card-content center">
                             <span class="card-title"><a href="{% url 'comercio:detalle' comercio.pk %}">{{ comercio.nombre }}</a></span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                                I am convenient because I require little markup to use effectively.</p>
                          </div>
 
-                         <div class="card-action">
+                         <!--<div class="card-action">
                              <a href="{% url 'comercio:detalle' comercio.pk %}">Ver Menu</a>
-                         </div>
+                         </div>-->
                      </div>
                 </div>
                  {% endfor %}
