@@ -13,7 +13,7 @@ def index(request):
     comercios = Comercio.objects.order_by('visitas')
     promociones = Promocion.objects.all()
     contexto = {'comentarios':comentarios, 'comercios':comercios, 'promociones':promociones}
-    return render(request,'index.html', contexto)
+    return render(request,'web/index.html', contexto)
 
 
 class ListaComercio(ListView):

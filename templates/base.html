@@ -11,14 +11,12 @@
             <link rel="stylesheet" href="{% static 'css/styles.css' %}">
             <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
             <link rel="stylesheet" href="{% static 'css/materialize.css' %}">
-            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
         {% endblock %}
 
         {% block javascript %}
             <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
             <script language="JavaScript" src="{% static 'js/script.js' %}"></script>
             <script src="{% static 'js/materialize.js' %}"></script>
-            <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
             <script language="JavaScript">
                 $(document).ready(function(){
                     $('.parallax').parallax();
@@ -28,83 +26,29 @@
 
         <title>{% block title %} Document {% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     </head>
 
-    <body class="red darken-4">
+    <body class="blue-grey darken-1">
 
-        <!-- Barra de navegacion -->
+        <!-- NAVBAR -->
         <div class="navbar-fixed">
-            <nav class="red darken-3">
-                <div class="nav_wrapper">
-                    <a href=""><img src="{% static 'img/img_project/Logo.png'%}" style="width: 11%"/></a>
-
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        {% if request.user.is_authenticated %}
-                            {% if request.user.first_name or request.user.last_name %}
-                                <li><img class="circle responsive-img" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" style="width: 7%"/>
-                                     {{ request.user.first_name }} {{ request.user.last_name }}</li>
-                                <!--{% user_display user %}-->
-                                <li><a href="/accounts/logout/" class="pull-right">Cerrar Sesion</a></li>
-                            {% else %}
-                                <li><a href="/accounts/logout/" class="pull-right">Cerrar Sesion</a></li>
-                                <li><a>{{ request.user.username }}</a></li>
-                            {% endif %}
-                        <!--{% if request.user.profile.account_verified %}
-                                (verified)
-                            {% else %}
-                                (unverified)
-                            {% endif %}-->
-                        {% else %}
-                            <!--<li><a href="/accounts/login/" class="pull-right">Login</a></li>
-                            <li><a href="{% provider_login_url 'facebook' method='js_sdk' %}">Iniciar Sesion con Fb</a></li>-->
-                            <li><a class="waves-effect waves-teal " href="/accounts/login/" class="pull-right"><i class="material-icons left">vpn_key</i>Iniciar Sesion</a></li>
-                        {% endif %}
-                            <!--<li><a class="waves-effect waves-teal " href="javascript:void(0)" onclick="visibilidad('popup_registro');"><i class="material-icons left">perm_identity</i>Registrarse</a></li>-->
-                    </ul>
-
-                    <ul class="side-nav" id="mobile-demo">
-                        <li><a href="">Registrarse</a></li>
-                        <li><a href="">Iniciar Sesion</a></li>
-                    </ul>
-                </div>
-            </nav>
+	        {% include 'navbar.html' %}
         </div>
 
-        <!-- Fin Barra de navegacion -->
-
-
-
-        <!--Contenido-->
+        <!--CONTENIDO-->
+        <div class="row">
             {% block content %}
 
             {% endblock %}
-        <!--Fin Contenido-->
+        </div>
 
-
+        <!-- FOOTER -->
+        <div class="row">
+	        {% include 'footer.html' %}
+        </div>
 
         <!--Footer-->
-        <footer class="page-footer red darken-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col l6 s12">
-                        <h5 class="white-text">Comemos Algo</h5>
-                        <p class="grey-text text-lighten-4">Seguinos en</p>
-                        <div>
-                            <a href="#"><img src="{% static 'img/social/facebook.png' %}" alt="Facebook"></a>
-                            <a href="#"><img src="{% static 'img/social/google.png' %}" alt="Google+"></a>
-                            <a href="#"><img src="{% static 'img/social/twitter.png' %}" alt="Twitter"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    Team HidraSoft
-                    <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-                </div>
-            </div>
-        </footer>
 
 
     </body>

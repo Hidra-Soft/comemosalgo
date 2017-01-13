@@ -20,11 +20,15 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+
+    # Apps internas
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('apps.comercio.urls', namespace="index")),
+    url(r'^', include('apps.web.urls', namespace="index")),
     url(r'^usuario/', include('apps.usuario.urls', namespace="usuario")),
     url(r'^comercio/', include('apps.comercio.urls', namespace="comercio")),
-    #Auth URLS
+
+    # Apps externas
+    # Auth URLS
     url(r'^accounts/', include('allauth.urls')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^comments/', include('django_comments.urls')),
