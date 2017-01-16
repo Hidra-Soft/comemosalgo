@@ -23,7 +23,7 @@ urlpatterns = [
 
     # Apps internas
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('apps.web.urls', namespace="index")),
+    url(r'^', include('apps.web.urls', namespace="web")),
     url(r'^usuario/', include('apps.usuario.urls', namespace="usuario")),
     url(r'^comercio/', include('apps.comercio.urls', namespace="comercio")),
 

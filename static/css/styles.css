@@ -1,3 +1,4 @@
+
 #banner_inicio{
 background-image: url('../img/banners/banner.png');
 background-size: cover;
@@ -6,6 +7,12 @@ width: 100%;
 
 #banner_inicio_buscador{
     padding:2%;
+}
+
+#text-buscador{
+  position: relative;
+  top: -35px;
+  right: -100px;
 }
 
 .popup-position{
@@ -55,13 +62,14 @@ width: 100%;
 }
 
 #ico_search1, #ico_search2{
-    position:absolute; top:55px;
+    position:absolute; top:45px;
 
 }
 
 #ico_close1, #ico_close2{
-    position:absolute; top:5px;
+    position:absolute; top:7px;
 }
+
 
 #map{
 height: 100%;

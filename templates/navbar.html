@@ -2,12 +2,14 @@
 {% load account %}
 {% load socialaccount %}
 
-<nav class="green darken-2">
+<nav class="green ">
 	<div class="nav_wrapper">
-		<a href="">
-			<img src="{% static 'img/img_project/Logo.png' %}" style="width: 11%">
+
+		<a href="{% url 'web:index' %} ">
+			<img src="{% static 'img/img_project/Logo.png' %}" style="width: 150px; height:60px;">
 		</a>
 
+		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
 			{% if request.user.is_authenticated %}
 				{% if request.user.first_name or request.user.last_name %}
