@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django import forms
 from django.contrib.auth.models import User
 from django.views.generic import CreateView
 from django.core.urlresolvers import reverse_lazy
@@ -15,5 +14,8 @@ class RegistroUsuario(CreateView):
 @login_required
 def dashboard(request):
     return render(request, 'account/dashboard.html', {'section': 'dashboard'})
+
+def PerfilUsuario(request):
+    return render(request, 'usuario/perfil.html')
 
 

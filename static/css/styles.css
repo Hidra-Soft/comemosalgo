@@ -1,7 +1,7 @@
 #banner_inicio{
-background-image: url('../img/banners/banner.png');
-background-size: cover;
-width: 100%;
+    background-image: url('../img/banners/banner.png');
+    background-size: cover;
+    width: 100%;
 }
 
 #banner_inicio_buscador{

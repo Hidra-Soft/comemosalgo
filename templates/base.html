@@ -9,15 +9,18 @@
         <meta charset="UTF-8">
         {% block css %}
             <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+            <link rel="stylesheet" href="{% static 'css/jquery.dataTables.min.css' %}">
             <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
             <link rel="stylesheet" href="{% static 'css/materialize.css' %}">
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+
         {% endblock %}
 
         {% block javascript %}
             <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
             <script language="JavaScript" src="{% static 'js/script.js' %}"></script>
             <script src="{% static 'js/materialize.js' %}"></script>
+            <script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
             <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
             <script language="JavaScript">
                 $(document).ready(function(){
@@ -31,6 +34,15 @@
           <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     </head>
 
+    <!-- Dropdown Usuario -->
+    <ul id="dropdown-usuario" class="dropdown-content">
+      <li><a href="/usuario/perfil/">Mi Perfil</a></li>
+      <!-- Aca hay que hacer un if si es que el usuario es admin de comercio -->
+      <li><a href="/comercio/perfil/3">Mi Negocio</a></li>
+      <!-- Fin If -->
+      <li><a href="/accounts/logout/" class="pull-right">Cerrar Sesion</a></li>
+    </ul>
+
     <body class="red darken-4">
 
         <!-- Barra de navegacion -->
@@ -42,13 +54,19 @@
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         {% if request.user.is_authenticated %}
                             {% if request.user.first_name or request.user.last_name %}
-                                <li><img class="circle responsive-img" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" style="width: 7%"/>
-                                     {{ request.user.first_name }} {{ request.user.last_name }}</li>
-                                <!--{% user_display user %}-->
-                                <li><a href="/accounts/logout/" class="pull-right">Cerrar Sesion</a></li>
+                                <li>
+                                    <div class="row">
+                                        <div class="col s1 offset-s8">
+                                            <img class="circle responsive-img" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" style="width:100%;margin-top:10%;"/>
+                                        </div>
+                                        <div class="col s3">
+                                            <a class="dropdown-button" href="#!" data-activates="dropdown-usuario">{{ request.user.first_name }} {{ request.user.last_name }}</a>
+                                            <!--{% user_display user %}-->
+                                        </div>
+                                    </div>
+                                </li>
                             {% else %}
-                                <li><a href="/accounts/logout/" class="pull-right">Cerrar Sesion</a></li>
-                                <li><a>{{ request.user.username }}</a></li>
+                                <li><a class="dropdown-button" href="#!" data-activates="dropdown-usuario"><i class="material-icons left">perm_identity</i>{{ request.user.username }}</a></li>
                             {% endif %}
                         <!--{% if request.user.profile.account_verified %}
                                 (verified)

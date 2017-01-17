@@ -24,7 +24,6 @@ class ListaComercio(ListView):
     #queryset = Promocion.objects.filter(date__range=[hoy, vencimiento])
     template_name = "comercio/lista.html"
 
-
 class DetalleComercio(DetailView):
     model = Comercio
     #comidas = Comida.objects.filter(comercio = 3, disponibilidad=True)
@@ -40,6 +39,39 @@ class DetalleComercio(DetailView):
         context['telefonos'] = Telefono.objects.filter(comercio = self.object.pk)
         return context
 
+class Perfil(DetailView):
+    model = Comercio
+    #comidas = Comida.objects.filter(comercio = 3, disponibilidad=True)
+    comidas = Comida.objects.all()
+    queryset = Comercio.objects.filter(disponibilidad=True)
+    template_name = "comercio/perfil.html"
+
+    def get_context_data(self, **kwargs):
+        self.object.incrementar_visita()
+        context = super().get_context_data(**kwargs)
+
+        context['domicilios'] = Domicilio.objects.filter(comercio = self.object.pk)
+        context['telefonos'] = Telefono.objects.filter(comercio = self.object.pk)
+        return context
+
+class MiNegocio(DetailView):
+    model = Comercio
+    #comidas = Comida.objects.filter(comercio = 3, disponibilidad=True)
+    comidas = Comida.objects.all()
+    queryset = Comercio.objects.filter(disponibilidad=True)
+    template_name = "comercio/minegocio.html"
+
+    def get_context_data(self, **kwargs):
+        self.object.incrementar_visita()
+        context = super().get_context_data(**kwargs)
+
+        context['domicilios'] = Domicilio.objects.filter(comercio = self.object.pk)
+        context['telefonos'] = Telefono.objects.filter(comercio = self.object.pk)
+        return context
+
+class Productos(ListView):
+    model = Comida
+    template_name = "comercio/productos.html"
 
 class FormularioRegistroComercio(FormView):
     form_class = ComercioRegistroForm
