@@ -2,6 +2,15 @@
 {% load account %}
 {% load socialaccount %}
 
+<!-- Dropdown Usuario -->
+<ul id="dropdown-usuario" class="dropdown-content">
+    <li><a href="/usuario/perfil/">Mi Perfil</a></li>
+    <!-- Aca hay que hacer un if si es que el usuario es admin de comercio -->
+    <li><a href="/comercio/perfil/3">Mi Negocio</a></li>
+    <!-- Fin If -->
+    <li><a href="/accounts/logout/" class="pull-right">Cerrar Sesion</a></li>
+</ul>
+
 <nav class="green ">
 	<div class="nav_wrapper">
 
@@ -11,32 +20,30 @@
 
 		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			{% if request.user.is_authenticated %}
-				{% if request.user.first_name or request.user.last_name %}
-					<li><img class="circle responsive-img" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" style="width: 7%"/>
-						{{ request.user.first_name }} {{ request.user.last_name }}</li>
+            {% if request.user.is_authenticated %}
 
-					<!--{% user_display user %}-->
+                {% if request.user.first_name or request.user.last_name %}
+                    <div class="row">
+                        <div class="col s1 offset-s8">
+                            <li><img class="circle responsive-img" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" style="width:100%;margin-top:10%;"/>
+                        </div>
 
-					<li><a href="/accounts/logout/" class="pull-right">Cerrar Sesion</a></li>
+                        <div class="col s3">
+                            <a class="dropdown-button" data-beloworigin=true data-activates="dropdown-usuario"><i class="material-icons right">arrow_drop_down</i>{{ request.user.first_name }} {{ request.user.last_name }}</a></li>
+                        </div>
+                    </div>
+                {% else %}
+                    <i class="material-icons left">person</i>
+                    <li><a class="dropdown-button" data-beloworigin=true data-activates="dropdown-usuario"><i class="material-icons right">arrow_drop_down</i>{{ request.user.username }}</a></li>
+                {% endif %}
 
-				{% else %}
-					<li><a href="/accounts/logout/" class="pull-right">Cerrar Sesion</a></li>
-					<li><a>{{ request.user.username }}</a></li>
-				{% endif %}
-
-			<!--{% if request.user.profile.account_verified %}
-            (verified)
-            {% else %}
-            (unverified)
-            {% endif %}-->
 			{% else %}
-				<!--<li><a href="/accounts/login/" class="pull-right">Login</a></li>
-                <li><a href="{% provider_login_url 'facebook' method='js_sdk' %}">Iniciar Sesion con Fb</a></li>-->
+
 				<li><a class="waves-effect waves-teal pull-right" href="/accounts/login/"><i class="material-icons left">vpn_key</i>Iniciar Sesion</a></li>
+
 			{% endif %}
-				<!--<li><a class="waves-effect waves-teal " href="javascript:void(0)" onclick="visibilidad('popup_registro');"><i class="material-icons left">perm_identity</i>Registrarse</a></li>-->
-		</ul>
+
+        </ul>
 
 		<ul class="side-nav" id="mobile-demo">
 			<li><a href="">Registrarse</a></li>
@@ -44,3 +51,17 @@
 		</ul>
 	</div>
 </nav>
+
+<script>
+     $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: ($('.dropdown-content').width()*3)/2.5 + 5, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    }
+  );
+
+</script>
