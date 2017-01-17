@@ -48,7 +48,6 @@ DJANGO_APPS = (
 
 EXTERNAL_APPS = (
     'star_ratings',
-    'haystack',
 )
 
 PROJECT_APPS = (
