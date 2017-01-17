@@ -12,4 +12,10 @@ class ComercioConfig(AppConfig):
                                 "rubro",
                                 ],
                         )
-        watson.register(Domicilio)
+        watson.register(Domicilio,
+                        fields=["calle",
+                                "latitud",
+                                "longitud",
+                                "localidad",
+                                ],
+                        )

@@ -1,5 +1,5 @@
 {% load staticfiles %}
-
+{% load watson %}
 <div class="col s12 m12 l12" id="banner_inicio">
  	<div class="row container">
 	    <div class="row">
@@ -23,7 +23,7 @@
 
 	    <div class="row" style="background-color: rgba(0, 0, 0, 0.8);">
 
-		    <form action="{% url 'web:watson' %}" method="GET" class="col s12 m12 l12">
+		    <form action="{% url 'web:search' %}" method="GET" class="col s12 m12 l12">
 			    {% csrf_token %}
 			    <div class="row">
 
@@ -34,7 +34,7 @@
 				    </div>
 
 				    <div class="input-field col s12 m6 l6">
-					    <input name="q2" id="search-adress" type="search" placeholder="Direccion" required>
+					    <input name="q2" id="search-adress" type="search" placeholder="Direccion">
 					    <label for="search-adress" id="ico_search1"><i class="material-icons">search</i></label>
 					    <i class="material-icons" id="ico_close1">close</i>
 				    </div>
