@@ -48,9 +48,11 @@ DJANGO_APPS = (
 
 EXTERNAL_APPS = (
     'star_ratings',
+    'watson',
 )
 
 PROJECT_APPS = (
+    'apps.web',
     'apps.comercio',
     'apps.producto',
 )
@@ -74,7 +76,13 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),os.path.join(BASE_DIR, 'templates', 'allauth'),os.path.join(BASE_DIR, 'templates', 'star_ratings'),os.path.join(BASE_DIR, 'templates', 'comments')],
+
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+                 os.path.join(BASE_DIR, 'templates', 'allauth'),
+                 os.path.join(BASE_DIR, 'templates', 'star_ratings'),
+                 os.path.join(BASE_DIR, 'templates', 'comments')
+                 ],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +92,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # allauth specific context processors
                 'django.template.context_processors.request',
-                #'django.core.context_processors.request',
+                # 'django.core.context_processors.request',
             ],
         },
     },
@@ -164,12 +172,3 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 )
-
-WHOOSH_INDEX = os.path.join(BASE_DIR, 'whoosh/')
-
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
-    },
-}

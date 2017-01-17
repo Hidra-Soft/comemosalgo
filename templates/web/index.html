@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load account %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block title %} ComemosAlgo {% endblock %}
+
+
+{% block content %}
+
+    <!-- Buscador Inicio -->
+	{% include 'web/index/buscador.html' %}
+
+    <!-- Secciones Inicio -->
+	<div class="section">
+        <div class="row">
+
+            <!-- Los mas visitadoss -->
+            <div class="row">
+                 <h4>Los mas visitados</h4>
+                 {% if comercios %}
+                 {% for comercio in comercios %}
+                 <div class="col s6 m3">
+                     <div class="card">
+                         <div class="card-image">
+                            <img src="">
+                         </div>
+
+                         <div class="card-content center">
+                            <span class="card-title"><a href="{% url 'comercio:detalle' comercio.pk %}">{{ comercio.nombre }}</a></span>
+                         </div>
+
+                         <!--<div class="card-action">
+                             <a href="{% url 'comercio:detalle' comercio.pk %}">Ver Menu</a>
+                         </div>-->
+                     </div>
+                </div>
+                 {% endfor %}
+                 {% endif %}
+            </div>
+            <!-- Fin Los mas visitadoss -->
+
+            <!-- Promociones y Descuentos -->
+            <div class="row">
+            <h4>Promociones y Descuentos</h4>
+                <div class="col s6 m3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="{% static 'img/logos_comercios/logo1.png' %}" alt="Nombre Comercio">
+                        </div>
+                            <div class="card-content">
+                            <span class="card-title">Comercio 1</span>
+                            <p>I am a very simple card. I am good at containing small bits of information.
+                            I am convenient because I require little markup to use effectively.</p>
+                        </div>
+                            <div class="card-action">
+                            <a href="#">Ver mas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin Promociones y Descuentos -->
+
+            <!-- Comentarios -->
+             <div class="row">
+                 <h4>Comentarios</h4>
+
+                 {% if comentarios %}
+                 {% for comentario in comentarios%}
+                    <div class="col s6 m3">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="{% static 'img/logos_comercios/logo1.png' %}" alt="Nombre Comercio">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">{{comentario.pk}}</span>
+                                <p>{{comentario.user_name}}</p>
+                                <p>{{comentario.comment}}</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">Ver mas</a>
+                            </div>
+                        </div>
+                    </div>
+                 {% endfor %}
+                 {% endif %}
+             </div>
+            <!-- Fin Comentarios -->
+        </div>
+    </div>
+{% endblock %}

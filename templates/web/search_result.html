@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load watson %}
+
+{% block content %}
+<ul>
+    {% for result in search_results %}
+        <li>
+            {{ result.nombre }}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
