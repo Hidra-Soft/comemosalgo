@@ -1,5 +1,4 @@
 {% load staticfiles %}
-{% load watson %}
 <div class="col s12 m12 l12" id="banner_inicio">
  	<div class="row container">
 	    <div class="row">
@@ -27,24 +26,30 @@
 			    {% csrf_token %}
 			    <div class="row">
 
-				    <div class="input-field col s12 m6 l6">
-					    <input name="q1" id="search-food" type="search" placeholder="Comercio o Comida a Buscar">
-					    <label for="search-food" id="ico_search2"><i class="material-icons">search</i></label>
-					    <i class="material-icons" id="ico_close2">close</i>
-				    </div>
-
-				    <div class="input-field col s12 m6 l6">
-					    <input name="q2" id="search-adress" type="search" placeholder="Direccion">
-					    <label for="search-adress" id="ico_search1"><i class="material-icons">search</i></label>
+				    <div class="input-field col s12 m4 l4">
+					    <input name="q1" id="search-food" type="search" placeholder="Comida">
+					    <label for="search-food" id="ico_search1"><i class="material-icons">search</i></label>
 					    <i class="material-icons" id="ico_close1">close</i>
 				    </div>
 
-				    <div class="col s12 m6 l6">
-					    <input name="q3" type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+				    <div class="input-field col s12 m4 l4">
+					    <input name="q2" id="search-commerce" type="search" placeholder="Comercio">
+					    <label for="search-commerce" id="ico_search2"><i class="material-icons">search</i></label>
+					    <i class="material-icons" id="ico_close2">close</i>
+				    </div>
+
+				    <div class="input-field col s12 m4 l4">
+					    <input name="q3" id="search-adress" type="search" placeholder="Direccion">
+					    <label for="search-adress" id="ico_search3"><i class="material-icons">search</i></label>
+					    <i class="material-icons" id="ico_close3">close</i>
+				    </div>
+
+				    <div class="col s12 m4 l4 left">
+					    <input name="q4" type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
 					    <label for="filled-in-box" style="left:20px;">Buscar a partir de mi ubicacion</label>
 				    </div>
 
-				    <div class="col s12 m6 l6 ">
+				    <div class="col s12 m4 l4 right">
 					    <button class="btn waves-effect green darken-4" type="submit" name="action">Buscar
 						    <i class="material-icons right">send</i>
 					    </button>

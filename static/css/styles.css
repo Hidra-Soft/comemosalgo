@@ -61,12 +61,12 @@
     border-radius: 10px;
 }
 
-#ico_search1, #ico_search2{
+#ico_search1, #ico_search2, #ico_search3{
     position:absolute; top:45px;
 
 }
 
-#ico_close1, #ico_close2{
+#ico_close1, #ico_close2, #ico_close3{
     position:absolute; top:7px;
 }
 
@@ -87,4 +87,27 @@ height: 100%;
   font-family: 'Roboto','sans-serif';
   line-height: 30px;
   padding-left: 10px;
+}
+
+work-collections .collection-header {
+  font-size: 1.64rem;
+  font-weight: 500;
+}
+#work-collections .collection-item.avatar {
+  height: auto;
+}
+#work-collections p.collections-title {
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+}
+#work-collections p.collections-content {
+  font-size: 0.9rem;
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+}
+.collection .collection-item.avatar i.circle {
+  font-size: 28px;
 }

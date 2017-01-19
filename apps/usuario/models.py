@@ -1,7 +1,3 @@
-from django.db import models
-
-# Create your models here.
-
 from allauth.socialaccount.models import SocialAccount
 import hashlib
 from django.contrib.auth.models import User

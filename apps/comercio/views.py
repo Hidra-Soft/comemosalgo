@@ -14,6 +14,7 @@ class ListaComercio(ListView):
 
     template_name = "comercio/lista.html"
 
+
 class DetalleComercio(DetailView):
     model = Comercio
 
@@ -30,6 +31,7 @@ class DetalleComercio(DetailView):
         context['domicilios'] = Domicilio.objects.filter(comercio=self.object.pk)
         context['telefonos'] = Telefono.objects.filter(comercio=self.object.pk)
         return context
+
 
 class Perfil(DetailView):
     model = Comercio

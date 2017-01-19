@@ -19,7 +19,7 @@ class Categoria(models.Model):
         return '{}'.format(self.descripcion)
 
 
-class Categoria_Bebida(models.Model):
+class CategoriaBebida(models.Model):
     codigo = models.AutoField(primary_key=True)
     descripcion = models.TextField(max_length=30)
 
@@ -33,9 +33,8 @@ class Bebida(models.Model):
     precio = models.FloatField()
     disponibilidad = models.BooleanField()
     imagen = models.ImageField(upload_to='img_bebidas', null=True)
-    categoria = models.ManyToManyField(Categoria_Bebida)
+    categoria = models.ManyToManyField(CategoriaBebida)
     capacidad = models.ForeignKey(Capacidad, on_delete=models.CASCADE)
-
 
     def __str__(self):
         return '{}'.format(self.nombre)
@@ -52,9 +51,9 @@ class Comida(models.Model):
     categoria = models.ManyToManyField(Categoria)
     comercio = models.ForeignKey(Comercio, on_delete=models.CASCADE, null=True)
 
-
     def __str__(self):
         return '{}'.format(self.nombre)
+
 
 class Promocion(models.Model):
     nombre = models.CharField(max_length=50)
