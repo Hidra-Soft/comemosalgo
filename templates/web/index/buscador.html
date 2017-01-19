@@ -1,109 +1,91 @@
 {% load staticfiles %}
-<div class="col s12 m12 l12" id="banner_inicio">
- 	<div class="row container">
-	    <div class="row">
-		    <div class="col s12 m12 l12" style="background-color: rgba(255, 255, 255, 0.64">
-			    <em>
-				    <span class="center blue-grey-text text-darken-3">
-					    <h5> Encontra tus lugares y comidas preferidas, Catamarca Argentina </h5>
-				    </span>
-			    </em>
-		    </div>
-	    </div>
 
-	    <div class="row"></div>
-	    <div class="row"></div>
-	    <div class="row"></div>
-	    <div class="row"></div>
-	    <div class="row"></div>
-	    <div class="row"></div>
-	    <div class="row"></div>
-	    <div class="row"></div>
+    <!-- Buscador -->
+    <div class="col s12 m12 l12" id="banner_inicio">
+        <div class="row container">
+            <div class="row z-depth-4">
+                <div class="col s12 m12 l12" style="background-color: rgba(0, 0, 0, 0.64); margin-top:50px;border-radius: 25px;">
+                    <em>
+                        <span class="center grey-text text-lighten-2">
+                            <h5> Encontra lo que queres y donde queres comer! </h5>
+                        </span>
+                    </em>
+                </div>
+            </div>
 
-	    <div class="row" style="background-color: rgba(0, 0, 0, 0.8);">
+            <div class="row"></div><div class="row"></div><div class="row"></div>
+            <div class="row"></div><div class="row"></div><div class="row"></div>
 
-		    <form action="{% url 'web:search' %}" method="GET" class="col s12 m12 l12">
-			    {% csrf_token %}
-			    <div class="row">
+            <div class="row z-depth-3" style="background-color:rgba(0, 0, 0, 0.8);border-radius: 25px;">
+                <form action="{% url 'web:search' %}" method="GET" class="col s12 m12 l12">
+                    {% csrf_token %}
+                    <div class="row">
 
-				    <div class="input-field col s12 m4 l4">
-					    <input name="q1" id="search-food" type="search" placeholder="Comida">
-					    <label for="search-food" id="ico_search1"><i class="material-icons">search</i></label>
-					    <i class="material-icons" id="ico_close1">close</i>
-				    </div>
+                        <div class="input-field col s12 m4 l4">
+                            <input name="q1" id="search-food" type="search" placeholder="Comida">
+                            <label for="search-food" id="ico_search1"><i class="material-icons">search</i></label>
+                            <i class="material-icons" id="ico_close1">close</i>
+                        </div>
 
-				    <div class="input-field col s12 m4 l4">
-					    <input name="q2" id="search-commerce" type="search" placeholder="Comercio">
-					    <label for="search-commerce" id="ico_search2"><i class="material-icons">search</i></label>
-					    <i class="material-icons" id="ico_close2">close</i>
-				    </div>
+                        <div class="input-field col s12 m4 l4">
+                            <input name="q2" id="search-commerce" type="search" placeholder="Comercio">
+                            <label for="search-commerce" id="ico_search2"><i class="material-icons">search</i></label>
+                            <i class="material-icons" id="ico_close2">close</i>
+                        </div>
 
-				    <div class="input-field col s12 m4 l4">
-					    <input name="q3" id="search-adress" type="search" placeholder="Direccion">
-					    <label for="search-adress" id="ico_search3"><i class="material-icons">search</i></label>
-					    <i class="material-icons" id="ico_close3">close</i>
-				    </div>
+                        <div class="input-field col s12 m4 l4">
+                            <input name="q3" id="search-adress" type="search" placeholder="Direccion">
+                            <label for="search-adress" id="ico_search3"><i class="material-icons">search</i></label>
+                            <i class="material-icons" id="ico_close3">close</i>
+                        </div>
 
-				    <div class="col s12 m4 l4 left">
-					    <input name="q4" type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-					    <label for="filled-in-box" style="left:20px;">Buscar a partir de mi ubicacion</label>
-				    </div>
+                    </div>
 
-				    <div class="col s12 m4 l4 right">
-					    <button class="btn waves-effect green darken-4" type="submit" name="action">Buscar
-						    <i class="material-icons right">send</i>
-					    </button>
-				    </div>
-			    </div>
+                    <div class="row">
+                        <div class="col s6 m8 l8 center">
+                            <input name="q4" type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+                            <label for="filled-in-box" style="left:20px;">Buscar a partir de mi ubicacion</label>
+                        </div>
 
-		    </form>
-	    </div>
+                        <div class="col s6 m4 l4 right">
+                            <button class="btn waves-effect green darken-4" type="submit" name="action">Buscar
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
     </div>
-</div>
 
-<div class="section">
-	<div class="row grey darken-2">
-		<div class="col s6 m3 l3 center">
-			<img src="{% static 'img/icons/search.png' %}">
-			<div class="row">
-				<h5><span class="white-text">Busquedas</span></h5>
-			</div>
-			<div class="row">
-				<span class="grey-text text-lighten-4">Haz tus busquedas por comercio y/o comidas Busquedas a partir de tu ubicacion</span>
-			</div>
+    <!-- Funcionalidad -->
+	<div class="row green darken-2" style="padding-bottom:30px;">
+
+		<div class="col s3 m3 l3 offset-s1 offset-m1 offset-l1 center">
+            <div class="promo">
+                <img src="{% static 'img/icons/search.png' %}" width="25%" style="margin-top:30px;">
+                <h5><p class="promo-caption white-text">Busca</p></h5>
+                <p class="light center">Realiza tu busqueda indicando lo que deseas comer, puedes filtrar
+                    los resultados añadiendo el nombre del comercio, o tu direccion. Tambien puedes buscar a partir de
+                    tu ubicacion de GPS</p>
+            </div>
 		</div>
 
-		<div class="col s6 m3 l3 center">
-			<img src="{% static 'img/icons/commerce.png' %}">
-			<div class="row">
-				<h5><span class="white-text">Elije un comercio</span></h5>
-			</div>
-			<div class="row">
-				<span class="grey-text text-lighten-4">Informacion detallada del comercio</span>
-			</div>
+		<div class="col s3 m3 l3 center">
+            <div class="promo">
+			    <img src="{% static 'img/icons/commerce.png' %}" width="25%" style="margin-top:30px;">
+                <h5><p class="promo-caption white-text">Elije un comercio</p></h5>
+                <p class="light center text-lighten-4">Informacion detallada del comercio</p>
+            </div>
 		</div>
 
-		<div class="col s6 m3 l3 center">
-			<img src="{% static 'img/icons/star.png' %}">
-			<div class="row">
-				<h5><span class="white-text ">Califica</span></h5>
-			</div>
-			<div class="row">
-				<span class="grey-text text-lighten-4">Califica a los comercios, y realiza comentarios de los mismos</span>
-			</div>
-		</div>
-
-		<div class="col s6 m3 l3 center">
-			<img src="{% static 'img/icons/visited.png' %}">
-			<div class="row">
-				<h5><span class="white-text">Los mas visitados</span></h5>
-			</div>
-			<div class="row">
-				<span class="grey-text text-lighten-4">Una seccion especial para los comercios mas visitados</span>
-			</div>
+		<div class="col s3 m3 l3 center">
+            <div class="promo">
+			    <img src="{% static 'img/icons/star.png' %}" width="25%" style="margin-top:30px;">
+                <h5><p class="promo-caption white-text ">Califica</p></h5>
+                <span class="light center text-lighten-4">Califica a los comercios, y realiza comentarios de los mismos</span>
+            </div>
 		</div>
 
 	</div>
-</div>
-<div class="section">
-	<div class="row">

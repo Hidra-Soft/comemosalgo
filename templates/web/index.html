@@ -14,29 +14,29 @@
 
     <!-- Secciones Inicio -->
 	<div class="section">
-        <div class="row">
+        <div class="row container">
 
             <!-- Los mas visitadoss -->
             <div class="row">
                  <h4>Los mas visitados</h4>
                  {% if comercios %}
-                 {% for comercio in comercios %}
-                 <div class="col s6 m3">
-                     <div class="card">
-                         <div class="card-image">
-                            <img src="">
-                         </div>
+                    {% for comercio in comercios %}
 
-                         <div class="card-content center">
-                            <span class="card-title"><a href="{% url 'comercio:detalle' comercio.pk %}">{{ comercio.nombre }}</a></span>
-                         </div>
+                     <div class="col s4 m3 l3">
+                         <div class="card">
 
-                         <!--<div class="card-action">
-                             <a href="{% url 'comercio:detalle' comercio.pk %}">Ver Menu</a>
-                         </div>-->
+                             <div class="card-image">
+                                <img src="{{ comercio.imagen.url }}">
+                             </div>
+
+                             <div class="card-content center">
+                                <span class="card-title"><a href="{% url 'comercio:perfil' comercio.pk %}">{{ comercio.nombre }}</a></span>
+                             </div>
+
+                         </div>
                      </div>
-                </div>
-                 {% endfor %}
+
+                    {% endfor %}
                  {% endif %}
             </div>
             <!-- Fin Los mas visitadoss -->
@@ -44,49 +44,50 @@
             <!-- Promociones y Descuentos -->
             <div class="row">
             <h4>Promociones y Descuentos</h4>
-                <div class="col s6 m3">
+
+                <div class="col s4 m3 l3">
                     <div class="card">
                         <div class="card-image">
-                            <img src="{% static 'img/logos_comercios/logo1.png' %}" alt="Nombre Comercio">
+                            <img src="{{ comercio.imagen.url }}" alt="{{ comercio.nombre }}">
                         </div>
-                            <div class="card-content">
-                            <span class="card-title">Comercio 1</span>
-                            <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
+
+                        <div class="card-content">
+                            <span class="card-title">{{ comercio.nombre }}</span>
+                            <p>DESCRIPCION DE LA PROMO</p>
                         </div>
-                            <div class="card-action">
-                            <a href="#">Ver mas</a>
+
+                        <div class="card-action">
+                            <a href="#">Obtener Promocion</a>
                         </div>
                     </div>
                 </div>
+
             </div>
             <!-- Fin Promociones y Descuentos -->
 
             <!-- Comentarios -->
              <div class="row">
-                 <h4>Comentarios</h4>
+                 <h4>Ultimos Comentarios</h4>
 
                  {% if comentarios %}
-                 {% for comentario in comentarios%}
-                    <div class="col s6 m3">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="{% static 'img/logos_comercios/logo1.png' %}" alt="Nombre Comercio">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title">{{comentario.pk}}</span>
-                                <p>{{comentario.user_name}}</p>
-                                <p>{{comentario.comment}}</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">Ver mas</a>
+                     {% for comentario in comentarios%}
+                        <div class="col s4 m3 l3">
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="{% static 'img/logos_comercios/logo1.png' %}" alt="Nombre Comercio">
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title"></span>
+                                    <p><b>{{comentario.user_name}}</b></p>
+                                    <p>{{comentario.comment}}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                 {% endfor %}
+                     {% endfor %}
                  {% endif %}
              </div>
             <!-- Fin Comentarios -->
         </div>
     </div>
+
 {% endblock %}
