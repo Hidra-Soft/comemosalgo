@@ -20,9 +20,10 @@ class SearchView(TemplateView):
 
     def get(self, request, **kwargs):
         context = self.get_context_data(**kwargs)
-        q_comercio = request.GET.get("q1", "")
-        q_domicilio = request.GET.get("q2", "")
-        #q_ubicacion = request.GET.get("q3", "")
+        q_comida = request.GET.get("q1", "")
+        q_comercio = request.GET.get("q2", "")
+        q_domicilio = request.GET.get("q3", "")
+        # q_ubicacion = request.GET.get("q4", "")
 
         results = []
         if q_comercio and q_domicilio:
@@ -30,22 +31,33 @@ class SearchView(TemplateView):
 
             for re in resultes:
                 results.append(re.comercio)
-
+            context['search'] = "Comercio: " + q_comercio + " + Domicilio: " + q_domicilio
             context['search_results'] = results
             return self.render_to_response(context)
 
         elif q_comercio:
+            context['search'] = "Comercio: " + q_comercio
             context['search_results'] = watson.filter(Comercio, q_comercio)
             return self.render_to_response(context)
 
+        elif q_comida:
+            resultes = watson.filter(Comida, q_comida)
+
+            for re in resultes:
+                results.append(re.comercio)
+            context['search'] = "Comida: " + q_comida
+            context['search_results'] = results
+            return self.render_to_response(context)
+
         else:
+
             resultes = watson.filter(Domicilio, q_domicilio)
 
             for re in resultes:
                 results.append(re.comercio)
 
+            context['search'] = "Domicilio: " + q_domicilio
             context['search_results'] = results
             return self.render_to_response(context)
-
 
 

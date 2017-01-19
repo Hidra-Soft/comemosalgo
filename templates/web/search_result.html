@@ -2,12 +2,68 @@
 {% load watson %}
 
 {% block content %}
-<ul>
-    {% for result in search_results %}
-        <li>
-            {{ result.nombre }}
-        </li>
-    {% endfor %}
-</ul>
+<div class="section">
+	<div id="work-collections">
+		<div class="row">
+			<div class="col s12 m12 l12">
+				<ul id="projects-collection" class="collection">
+					<li class="collection-item avatar">
+						<i class="circle light-blue darken-2 material-icons">search</i>
+						<p class="collections-title">{{ search_results|length }} Resultados de busqueda: </p>
+						<p>{{ search }}</p>
+
+					</li>
+					{% if search_results %}
+					{% for comercio in search_results %}
+					<li class="collection-item">
+						<div class="row">
+
+							<div class="col s12 m2 l2">
+								<a href="{% url 'comercio:perfil' comercio.codigo %}"><img class="left" src="{{ comercio.imagen.url }}" style="width:100%;"></a>
+							</div>
+
+							<div class="col s12 m3 l3">
+								<a class="rigth" href="{% url 'comercio:perfil' comercio.codigo %}">
+									<p class="collections-title"> {{ comercio.nombre }} </p>
+								</a>
+								<p class="collections-content">{{ comercio.descripcion }}</p>
+							</div>
+
+							<div class="col s12 m3 l3">
+								<b>Rubro</b>
+								<span>{{ comercio.rubro }}</span>
+							</div>
+
+							<div class="col s12 m3 l3">
+								<b>Horarios</b>
+								<span>{{ comercio.horario }}</span>
+							</div>
+
+							<div class="col s12 m3 l3">
+								<b>Delivery</b>
+								<span>{{ comercio.delivery }}</span>
+							</div>
+							<div class="col s12 m3 l3">
+								<b>Visitas</b>
+								<span>{{ comercio.visitas }}</span>
+							</div>
+						</div>
+					</li>
+					{% endfor %}
+					{% else %}
+
+					<div class="section">
+						<div class="collection-item col s12 m12 l12 center">
+								<h5 class="collections-title">No se encontraron resultados de busqueda</h5>
+
+						</div>
+					</div>
+					{% endif %}
+
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 
 {% endblock %}

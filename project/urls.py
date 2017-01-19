@@ -32,7 +32,6 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
     url(r'^comments/', include('django_comments.urls')),
-
 ]
 
 if settings.DEBUG:
