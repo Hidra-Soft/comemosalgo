@@ -4,65 +4,122 @@
 {% block content %}
 <div class="section">
 	<div id="work-collections">
+
+        <!-- Mapa Resultados -->
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div id="map" style="height:50%"></div>
+                    <script>
+                        // Inicia el mapa
+                        function initMap() {
+                          var map = new google.maps.Map(document.getElementById('map'), {
+                            center: {lat: -28.469235, lng: -65.778826},
+                            zoom: 15,
+                            disableDefaultUI: true
+                          });
+
+                          var infoWindow = new google.maps.InfoWindow({map: map});
+
+                          // Prueba HTML5 geolocalizacion
+                          if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                              var pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                              };
+
+                              infoWindow.setPosition(pos);
+                              infoWindow.setContent('Estas aca');
+                              var marker = new google.maps.Marker({position: pos, map: map,});
+                              map.setCenter(pos);
+                            }, function() {
+                              handleLocationError(true, infoWindow, map.getCenter());
+                            });
+                          } else {
+                            // Browser doesn't support Geolocation
+                            handleLocationError(false, infoWindow, map.getCenter());
+                          }
+                        }
+
+                        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                          infoWindow.setPosition(pos);
+                          infoWindow.setContent(browserHasGeolocation ?
+                                                'Error: The Geolocation service failed.' :
+                                                'Error: Your browser doesn\'t support geolocation.');
+                        }
+
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHpVXm1_SpgpAUOMwQ-c9PC-dtnklO3n0&callback=initMap" async defer></script>
+            </div>
+        </div>
+
 		<div class="row">
+
 			<div class="col s12 m12 l12">
 				<ul id="projects-collection" class="collection">
 					<li class="collection-item avatar">
 						<i class="circle light-blue darken-2 material-icons">search</i>
 						<p class="collections-title">{{ search_results|length }} Resultados de busqueda: </p>
 						<p>{{ search }}</p>
-
 					</li>
 					{% if search_results %}
-					{% for comercio in search_results %}
-					<li class="collection-item">
-						<div class="row">
+                        {% for comercio in search_results %}
+                            <li class="collection-item">
 
-							<div class="col s12 m2 l2">
-								<a href="{% url 'comercio:perfil' comercio.codigo %}"><img class="left" src="{{ comercio.imagen.url }}" style="width:100%;"></a>
-							</div>
+                            <div class="row">
 
-							<div class="col s12 m3 l3">
-								<a class="rigth" href="{% url 'comercio:perfil' comercio.codigo %}">
-									<p class="collections-title"> {{ comercio.nombre }} </p>
-								</a>
-								<p class="collections-content">{{ comercio.descripcion }}</p>
-							</div>
+                                <div class="col s12 m12">
+                                    <div class="card horizontal">
+                                    <div class="card-image">
+                                        <a href="{% url 'comercio:perfil' comercio.codigo %}"><img src="{{ comercio.imagen.url }}"></a>
+                                      </div>
+                                    <div class="card-stacked">
 
-							<div class="col s12 m3 l3">
-								<b>Rubro</b>
-								<span>{{ comercio.rubro }}</span>
-							</div>
+                                    <div class="card-content">
+                                        <div class="col s6">
+                                            <p><a class="rigth" href="{% url 'comercio:perfil' comercio.codigo %}">
+                                            <p class="collections-title"> {{ comercio.nombre }}</p></a>
+                                        </div>
 
-							<div class="col s12 m3 l3">
-								<b>Horarios</b>
-								<span>{{ comercio.horario }}</span>
-							</div>
+                                        <div class="col s6">
+                                            <p style="margin-top:1%;">
+                                                {% for r in comercio.rubro.all %}
+                                                    <div class="chip">
+                                                        {{ r }}
+                                                    </div>
+                                                {% endfor %}
+                                            </p>
+                                            <p>Telefono: {{ comercio.telefono }}</p>
+                                            <p>Direccion: {{ comercio.direccion }}</p>
+                                        </div>
+                                    </div>
 
-							<div class="col s12 m3 l3">
-								<b>Delivery</b>
-								<span>{{ comercio.delivery }}</span>
-							</div>
-							<div class="col s12 m3 l3">
-								<b>Visitas</b>
-								<span>{{ comercio.visitas }}</span>
-							</div>
-						</div>
-					</li>
-					{% endfor %}
+                                    <div class="card-action">
+                                      <a class="btn green" href="{% url 'comercio:perfil' comercio.codigo %}"><i class="material-icons left">add</i> Ver Menu</a>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                </div>
+
+                            </div>
+
+                        </li>
+                        {% endfor %}
 					{% else %}
 
-					<div class="section">
-						<div class="collection-item col s12 m12 l12 center">
-								<h5 class="collections-title">No se encontraron resultados de busqueda</h5>
+                        <div class="section">
+                            <div class="collection-item col s12 m12 l12 center">
+                                    <h5 class="collections-title">No se encontraron resultados de busqueda</h5>
 
-						</div>
-					</div>
+                            </div>
+                        </div>
 					{% endif %}
-
 				</ul>
 			</div>
+
 		</div>
+
 	</div>
 </div>
 
