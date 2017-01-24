@@ -49,12 +49,14 @@ DJANGO_APPS = (
 EXTERNAL_APPS = (
     'star_ratings',
     'watson',
+    "geoposition",
 )
 
 PROJECT_APPS = (
     'apps.web',
     'apps.comercio',
     'apps.producto',
+    'apps.usuario',
 )
 
 INSTALLED_APPS = DJANGO_APPS + EXTERNAL_APPS + PROJECT_APPS
@@ -172,3 +174,16 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 )
+
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyBHpVXm1_SpgpAUOMwQ-c9PC-dtnklO3n0'
+
+GEOPOSITION_MAP_OPTIONS = {
+    'minZoom': 14,
+    'maxZoom': 18,
+    'center': {'lat': -28.469235, 'lng': -65.778826},
+}
+
+GEOPOSITION_MARKER_OPTIONS = {
+    'position': {'lat': -28.469235, 'lng': -65.778826},
+    'cursor': 'move',
+}

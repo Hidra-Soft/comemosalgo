@@ -16,15 +16,36 @@
             <!-- Mapa Comercios -->
             <div class="row">
                 <div class="col s12 center" id="map" style="height:50%;border-radius:25px;"></div>
+
+
                 <script>
                     function initMap() {
-                      var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 14,
-                        center: {lat: -28.469235, lng: -65.778826},
-                        disableDefaultUI: true
-                      });
+                          var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 14,
+                            center: {lat: -28.469235, lng: -65.778826},
+                            disableDefaultUI: true
+                          });
+
+                        {% if domicilios %}
+                            {% for domicilio in domicilios %}
+                                    var marker1 = new google.maps.Marker({
+                                        position: new google.maps.LatLng({{ domicilio.position }}),
+                                        map: map,
+                                    });
+
+                                    var infowindow = new google.maps.InfoWindow({
+                                        content: '<a href="{% url 'comercio:perfil' domicilio.comercio.codigo %}"> Hola {{ comercio.nombre }}</a>',
+                                      });
+
+                                    marker1.addListener('click', function() {
+                                        infowindow.open(map, marker1);
+                                    });
+                            {% endfor %}
+                        {% endif %}
                     }
                 </script>
+
+
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHpVXm1_SpgpAUOMwQ-c9PC-dtnklO3n0&callback=initMap" async defer></script>
             </div>
 

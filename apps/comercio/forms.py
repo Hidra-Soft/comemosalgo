@@ -17,7 +17,6 @@ class ComercioRegistroForm(forms.ModelForm):
         fields = (
             'nombre',
             'rubro',
-            'horarios',
             'descripcion',
             'forma_pago',
             'imagen',
@@ -27,7 +26,6 @@ class ComercioRegistroForm(forms.ModelForm):
         labels = {
             'nombre': 'Nombre del Comercio',
             'rubro': 'Rubro del Comercio',
-            'horarios': 'Horarios del Comercio',
             'descripcion': 'Descripcion del Comercio',
             'imagen': 'Seleccione imagen del logo del Comercio',
             'delivery': 'Cuenta con delivery?',
@@ -36,7 +34,6 @@ class ComercioRegistroForm(forms.ModelForm):
         widgets = {
             'nombre': TextInput(attrs={'class': 'input-field', 'type': 'text'}),
             'rubro': SelectMultiple(),
-            'horarios': DateTimeInput(attrs={'class': 'timepicker', 'type': 'time'}),
             'descripcion': Textarea(attrs={'class': 'materialize-textarea', 'rows':20}),
             'forma_pago': SelectMultiple(),
             'imagen': FileInput(attrs={'class': 'input-field validate btn', 'type': 'file'}),

@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load static %}
 {% load account %}
 {% load socialaccount %}
 {% providers_media_js %}
@@ -50,7 +51,7 @@
             <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
             <script language="JavaScript">
                 $(document).ready(function(){
-                    $('.parallax').parallax();
+                    $('ul.tabs').tabs();
                 });
             </script>
         {% endblock %}

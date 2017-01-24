@@ -6,20 +6,12 @@ class ComercioAdmin(admin.ModelAdmin):
     list_display = ('codigo','nombre','disponibilidad', 'imagen')
 
 
-#class DomicilioAdmin(admin.ModelAdmin):
- #   list_display = ('codigo','calle','numero','coordenadas','localidad')
-
-
 class PagoAdmin(admin.ModelAdmin):
     list_display = ('codigo','nombre','descripcion')
 
 
 #class TelefonoAdmin(admin.ModelAdmin):
 #    list_display = ('numero','descripcion','comercio')
-
-
-class DepartamentoAdmin(admin.ModelAdmin):
-    list_display = ('codigo','nombre')
 
 
 class LocalidadAdmin(admin.ModelAdmin):
@@ -39,7 +31,7 @@ class TelefonoAdmin(admin.ModelAdmin):
 
 
 class DomicilioAdmin(admin.ModelAdmin):
-    list_display = ('codigo', 'calle', 'numero', 'latitud', 'longitud', 'localidad')
+    list_display = ('codigo', 'calle', 'numero', 'localidad', 'position')
 
 
 class HorarioAdmin(admin.ModelAdmin):
@@ -49,7 +41,6 @@ class HorarioAdmin(admin.ModelAdmin):
 
 admin.site.register(Comercio, ComercioAdmin)
 admin.site.register(Pago, PagoAdmin)
-#admin.site.register(Departamento, DepartamentoAdmin)
 admin.site.register(Localidad, LocalidadAdmin)
 admin.site.register(Rubro, RubroAdmin)
 admin.site.register(Delivery, DeliveryAdmin)

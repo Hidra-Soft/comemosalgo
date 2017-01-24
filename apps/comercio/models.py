@@ -1,7 +1,10 @@
 from django.db import models
-import datetime
+from geoposition.fields import GeopositionField
 
-
+TELEFONO_CHOICE = (
+	('Movil', 'Movil'),
+	('Fijo', 'Fijo'),
+)
 
 class Pago(models.Model):
     codigo = models.AutoField(primary_key=True)
@@ -30,21 +33,11 @@ class Delivery(models.Model):
         return '{}'.format(self.descripcion)
 
 
-class Horario(models.Model):
-    descripcion = models.CharField(max_length=100)
-    apertura = models.TimeField()
-    cierre = models.TimeField()
-
-    def __str__(self):
-        return '{}'.format(self.descripcion, self.apertura, self.cierre)
-
-
 class Comercio(models.Model):
     codigo = models.AutoField(primary_key= True)
     nombre = models.CharField(max_length=40)
     rubro = models.ManyToManyField(Rubro)
-    horarios = models.ForeignKey(Horario)
-    descripcion = models.TextField(max_length=150)
+    descripcion = models.TextField(max_length=500)
     forma_pago = models.ManyToManyField(Pago)
     disponibilidad = models.BooleanField()
     imagen = models.ImageField(upload_to='img_comercios', blank=True)
@@ -60,11 +53,22 @@ class Comercio(models.Model):
         self.visitas += 1
         self.save()
 
+class Horario(models.Model):
+    comercio = models.ForeignKey(Comercio)
+    descripcion = models.CharField(max_length=100)
+    apertura = models.TimeField()
+    cierre = models.TimeField()
+
+    def __str__(self):
+        return '{}'.format(self.descripcion, self.apertura, self.cierre)
+
 class Telefono(models.Model):
     id = models.AutoField(primary_key=True)
-    tipo = models.CharField(max_length=30)
-    numero = models.CharField(max_length=15)
     comercio = models.ForeignKey(Comercio, null=True)
+    tipo = models.CharField(choices=TELEFONO_CHOICE,
+                            max_length=10,
+                            default=TELEFONO_CHOICE[0][0])
+    numero = models.CharField(max_length=15)
 
     def __str__(self):
         return '{}'.format(self.tipo, self.numero)
@@ -82,9 +86,8 @@ class Domicilio(models.Model):
     comercio = models.ForeignKey(Comercio, null=True)
     calle = models.CharField(max_length=50)
     numero = models.IntegerField()
-    latitud = models.CharField(max_length=11)
-    longitud = models.CharField(max_length=11)
     localidad = models.ForeignKey(Localidad)
+    position = GeopositionField()
 
     def __str__(self):
         return 'calle {} nro {}'.format(self.calle, self.numero)

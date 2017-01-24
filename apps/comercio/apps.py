@@ -14,8 +14,7 @@ class ComercioConfig(AppConfig):
                         )
         watson.register(Domicilio,
                         fields=["calle",
-                                "latitud",
-                                "longitud",
                                 "localidad",
+                                "position",
                                 ],
                         )
