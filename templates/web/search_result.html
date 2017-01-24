@@ -78,26 +78,40 @@
 
                                             <div class="card-content">
 
-                                                <div class="col s6">
+                                                <div class="col s4">
                                                     <p><a class="rigth" href="{% url 'comercio:perfil' comercio.codigo %}">
                                                     <p class="collections-title"> {{ comercio.nombre }}</p></a>
                                                 </div>
 
-                                                <div class="col s6">
-                                                    <p style="margin-top:1%;">
-                                                        {% for r in comercio.rubro.all %}
-                                                            <div class="chip">
-                                                                {{ r }}
-                                                            </div>
-                                                        {% endfor %}
-                                                    </p>
-                                                    <p>Telefono: {{ comercio.telefono }}</p>
-                                                    <p>Direccion: {{ comercio.direccion }}</p>
+                                                <div class="col s8">
+                                                    <div class="row">
+
+                                                        <div class="col s5">
+                                                            <p style="margin-top:1%;">
+                                                                {% for r in comercio.rubro.all %}
+                                                                    <div class="chip">
+                                                                        {{ r }}
+                                                                    </div>
+                                                                {% endfor %}
+                                                            </p>
+                                                        </div>
+
+                                                        <div class="col s3">
+                                                            <p><i class="material-icons">phone</i> {{ comercio.telefono }}</p>
+                                                            <p><i class="material-icons">smartphone</i> {{ comercio.telefono }}</p>
+                                                        </div>
+
+                                                        <div class="col s4">
+                                                            <p><i class="material-icons">room</i> {{ direccion.numero }}</p>
+                                                        </div>
+
+                                                     </div>
                                                 </div>
+
                                             </div>
 
                                             <div class="card-action">
-                                              <a class="btn green" href="{% url 'comercio:perfil' comercio.codigo %}"><i class="material-icons left">add</i> Ver Menu</a>
+                                                <a class="btn green" href="{% url 'comercio:perfil' comercio.codigo %}"><i class="material-icons left">add</i> Ver Menu</a>
                                             </div>
 
                                         </div>
@@ -112,8 +126,7 @@
 
                         <div class="section">
                             <div class="collection-item col s12 m12 l12 center">
-                                    <h5 class="collections-title">No se encontraron resultados de busqueda</h5>
-
+                                <h5 class="collections-title">No se encontraron resultados de busqueda</h5>
                             </div>
                         </div>
 					{% endif %}

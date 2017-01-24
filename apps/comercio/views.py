@@ -1,5 +1,5 @@
 from .forms import ComercioRegistroForm
-from apps.comercio.models import Comercio, Domicilio, Telefono, Horario
+from apps.comercio.models import Comercio, Domicilio, Telefono, Horario, RedSocial
 from apps.producto.models import Comida
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView
@@ -47,6 +47,7 @@ class Perfil(DetailView):
         context['domicilios'] = Domicilio.objects.filter(comercio = self.object.pk)
         context['telefonos'] = Telefono.objects.filter(comercio = self.object.pk)
         context['horarios'] = Horario.objects.filter(comercio=self.object.pk)
+        context['redes_sociales'] = RedSocial.objects.filter(comercio=self.object.pk)
         return context
 
 class MiNegocio(DetailView):

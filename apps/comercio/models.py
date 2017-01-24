@@ -6,6 +6,13 @@ TELEFONO_CHOICE = (
 	('Fijo', 'Fijo'),
 )
 
+RED_SOCIAL_CHOICE = (
+	('Facebook', 'Facebook'),
+	('Twitter', 'Twitter'),
+    ('Instagram', 'Instagram'),
+    ('Google+', 'Google+'),
+)
+
 class Pago(models.Model):
     codigo = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=20)
@@ -37,6 +44,7 @@ class Comercio(models.Model):
     codigo = models.AutoField(primary_key= True)
     nombre = models.CharField(max_length=40)
     rubro = models.ManyToManyField(Rubro)
+    email = models.CharField(max_length=100, null=True)
     descripcion = models.TextField(max_length=500)
     forma_pago = models.ManyToManyField(Pago)
     disponibilidad = models.BooleanField()
@@ -61,6 +69,16 @@ class Horario(models.Model):
 
     def __str__(self):
         return '{}'.format(self.descripcion, self.apertura, self.cierre)
+
+class RedSocial(models.Model):
+    comercio = models.ForeignKey(Comercio)
+    nombre = models.CharField(choices=RED_SOCIAL_CHOICE,
+                              max_length=100,
+                              default=TELEFONO_CHOICE[0][0])
+    link = models.CharField(max_length=100)
+
+    def __str__(self):
+        return '{}'.format(self.nombre, self.link)
 
 class Telefono(models.Model):
     id = models.AutoField(primary_key=True)

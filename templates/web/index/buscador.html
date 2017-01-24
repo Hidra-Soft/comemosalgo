@@ -1,6 +1,7 @@
 {% load staticfiles %}
 
     <!-- Buscador -->
+    <div class="row">
     <div class="col s12 m12 l12" id="banner_inicio">
         <div class="row container">
             <div class="row">
@@ -16,7 +17,6 @@
             <!-- Mapa Comercios -->
             <div class="row">
                 <div class="col s12 center" id="map" style="height:50%;border-radius:25px;"></div>
-
 
                 <script>
                     function initMap() {
@@ -44,8 +44,6 @@
                         {% endif %}
                     }
                 </script>
-
-
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHpVXm1_SpgpAUOMwQ-c9PC-dtnklO3n0&callback=initMap" async defer></script>
             </div>
 
@@ -93,13 +91,13 @@
     </div>
 
     <!-- Funcionalidad -->
-	<div class="row green darken-2" style="padding-bottom:30px;">
+	<div class="row brown darken-2" style="padding-bottom:30px;">
 
 		<div class="col s3 m3 l3 offset-s1 offset-m1 offset-l1 center">
             <div class="promo">
                 <img src="{% static 'img/icons/search.png' %}" width="25%" style="margin-top:30px;">
                 <h5><p class="promo-caption white-text">Busca</p></h5>
-                <p class="light center">Realiza tu busqueda indicando lo que deseas comer, puedes filtrar
+                <p class="light center white-text">Realiza tu busqueda indicando lo que deseas comer, puedes filtrar
                     los resultados añadiendo el nombre del comercio, o tu direccion. Tambien puedes buscar a partir de
                     tu ubicacion de GPS</p>
             </div>
@@ -109,7 +107,7 @@
             <div class="promo">
 			    <img src="{% static 'img/icons/commerce.png' %}" width="25%" style="margin-top:30px;">
                 <h5><p class="promo-caption white-text">Elije un comercio</p></h5>
-                <p class="light center text-lighten-4">Informacion detallada del comercio</p>
+                <p class="light center white-text">Informacion detallada del comercio</p>
             </div>
 		</div>
 
@@ -117,8 +115,10 @@
             <div class="promo">
 			    <img src="{% static 'img/icons/star.png' %}" width="25%" style="margin-top:30px;">
                 <h5><p class="promo-caption white-text ">Califica</p></h5>
-                <span class="light center text-lighten-4">Califica a los comercios, y realiza comentarios de los mismos</span>
+                <span class="light center white-text">Califica a los comercios, y realiza comentarios de los mismos</span>
             </div>
 		</div>
 
 	</div>
+
+    </div>

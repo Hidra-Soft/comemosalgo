@@ -3,17 +3,16 @@
 {% load socialaccount %}
 
 <!-- Dropdown Usuario -->
-<ul id="dropdown-usuario" class="dropdown-content">
-    <li><a href="/usuario/perfil/">Mi Perfil</a></li>
+<ul id="dropdown-usuario" class="dropdown-content brown lighten-2">
+    <li><a href="/usuario/perfil/" class="white-text">Mi Perfil</a></li>
     <!-- Aca hay que hacer un if si es que el usuario es admin de comercio -->
-    <li><a href="/comercio/perfil/3">Mi Negocio</a></li>
+    <li><a href="/comercio/perfil/1" class="white-text">Mi Negocio</a></li>
     <!-- Fin If -->
-    <li><a href="/accounts/logout/" class="pull-right">Cerrar Sesion</a></li>
+    <li><a href="/accounts/logout/" class="pull-right white-text">Cerrar Sesion</a></li>
 </ul>
 
-<nav class="green ">
+<nav class="brown">
 	<div class="nav_wrapper">
-
 		<a href="{% url 'web:index' %} ">
 			<img src="{% static 'img/img_project/Logo.png' %}" style="width: 150px; height:60px;">
 		</a>

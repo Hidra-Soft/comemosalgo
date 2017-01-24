@@ -7,7 +7,29 @@
 import string
 
 {% block content %}
+
+<div id="fb-root"></div>
+<script>
+    (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.8&appId=1780846565513008";
+          fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <div class="row">
+    <!-- Boton Edicion -->
+        <!-- ACA TIENE QUE IR UN IF, SI ES QUE EL USUARIO ES EL DUEÑO DEL NEGOCIO -->
+        <div class="row">
+            <div class="col s12 center" style="margin-top:30px;">
+                <a class="btn-large brown" href="{% url 'comercio:minegocio' comercio.pk %}"><i class="material-icons left">mode_edit</i>Editar Mi Negocio</a>
+            </div>
+        </div>
+        <!-- FIN IF -->
+    <!-- Fin Boton Edicion -->
+
     <!--Portada -->
     <div class="row">
         <div id="profile-page" class="section" style="margin-left:1%;margin-right:1%;">
@@ -186,23 +208,55 @@ import string
                 </ul>
                 <!-- Fin Detalles Perfil  -->
 
-                <!-- Reputacion  -->
-                    <div class="card amber darken-2">
-                      <div class="card-content white-text center-align">
-                          <p>Reputacion</p>
-                          <p class="card-title"><i class="prefix material-icons">star</i> 3685</p>
-                      </div>
-                    </div>
-                <!-- Fin Reputacion -->
+                <!-- Redes Sociales  -->
+                    {% if redes_sociales %}
+                        {% for r in redes_sociales %}
+                            {% if r.nombre == 'Facebook' %}
+                                <div class="card white darken-2">
+                                  <div class="card-content white-text center-align">
+                                      <div class="fb-page" data-href="{{ r.link }}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
+                                  </div>
+                                </div>
+                            {% endif %}
 
-                <!-- Otro Dato -->
-                    <div class="card center-align">
-                  <div class="card-content purple white-text">
-                      <p class="card-stats-title"><i class="mdi-editor-attach-money"></i>Otro Dato</p>
-                      <h4 class="card-stats-number"><i class="material-icons">rooms</i>20</h4>
-                  </div>
-                </div>
-                <!-- Fin Otro Dato -->
+                            {% if r.nombre == 'Twitter' %}
+                                <div class="card white darken-2">
+                                  <div class="card-content white-text center-align">
+                                      <a class="twitter-timeline" data-height="400" href="{{ r.link }}">Tweets by {{ comercio.nombre }}</a>
+                                      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                  </div>
+                                </div>
+                            {% endif %}
+
+                            {% if r.nombre == 'Instagram' %}
+                                <div class="card amber darken-2">
+                                  <div class="card-content white-text center-align">
+                                      Instagram
+                                  </div>
+                                </div>
+                            {% endif %}
+
+                            {% if r.nombre == 'Google+' %}
+                                <div class="card white darken-2">
+                                  <div class="card-content white-text center-align">
+                                        <div class="g-page" data-width="250" data-href="//{{ r.link }}" data-showtagline="false" data-rel="publisher"></div>
+
+                                        <script type="text/javascript">
+                                          window.___gcfg = {lang: 'es'};
+
+                                          (function() {
+                                            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                                            po.src = 'https://apis.google.com/js/platform.js';
+                                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                                          })();
+                                        </script>
+                                  </div>
+                                </div>
+                            {% endif %}
+
+                        {% endfor %}
+                    {% endif %}
+                <!-- Fin Redes Sociales-->
 
                 <!-- Mapa -->
                     <div class="row">

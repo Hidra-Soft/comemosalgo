@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.comercio.models import Comercio, Pago, Localidad, Rubro, Delivery, Telefono, Domicilio, Horario
+from apps.comercio.models import Comercio, Pago, Localidad, Rubro, Delivery, Telefono, Domicilio, Horario, RedSocial
 
 
 class ComercioAdmin(admin.ModelAdmin):
@@ -8,10 +8,6 @@ class ComercioAdmin(admin.ModelAdmin):
 
 class PagoAdmin(admin.ModelAdmin):
     list_display = ('codigo','nombre','descripcion')
-
-
-#class TelefonoAdmin(admin.ModelAdmin):
-#    list_display = ('numero','descripcion','comercio')
 
 
 class LocalidadAdmin(admin.ModelAdmin):
@@ -38,6 +34,9 @@ class HorarioAdmin(admin.ModelAdmin):
     list_display = ('descripcion', 'apertura', 'cierre')
 
 
+class RedSocialAdmin(admin.ModelAdmin):
+    list_display = ('comercio', 'nombre', 'link')
+
 
 admin.site.register(Comercio, ComercioAdmin)
 admin.site.register(Pago, PagoAdmin)
@@ -47,3 +46,4 @@ admin.site.register(Delivery, DeliveryAdmin)
 admin.site.register(Telefono, TelefonoAdmin)
 admin.site.register(Domicilio, DomicilioAdmin)
 admin.site.register(Horario, HorarioAdmin)
+admin.site.register(RedSocial, RedSocialAdmin)
